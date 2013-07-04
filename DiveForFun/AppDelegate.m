@@ -7,12 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @implementation AppDelegate
 
+@synthesize navi,mainViewController,managedModel,persistentstoreCoordinator,context,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self initCoreData];
+    
+    self.latGIS = [[NSArray alloc] init];
+    self.lonGIS = [[NSArray alloc] init];
+    self.timeGIS = [[NSArray alloc] init];
+    self.courseGIS = [[NSArray alloc] init];
+    self.altGIS = [[NSArray alloc] init];
+    self.logLon = [[NSArray alloc] init];
+    self.logLat = [[NSArray alloc] init];
+    self.logSite = [[NSArray alloc] init];
+    self.logDate = [[NSArray alloc] init];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.mainViewController = [[MainViewController alloc] init];
+    self.navi = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    self.window.rootViewController = navi;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -45,5 +63,25 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+-(void)initCoreData
+{
+    NSError *error;
+    
+    //資料檔路徑
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/MapData.db"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // 初始化model coordinator context
+    managedModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    persistentstoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedModel];
+    if (![persistentstoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]) {
+        NSLog(@"Error: %@", [error localizedFailureReason]);
+    }else{
+        context = [[NSManagedObjectContext alloc] init];
+        [context setPersistentStoreCoordinator:persistentstoreCoordinator];
+    }
+}
+
 
 @end

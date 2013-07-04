@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5750B9421783BDB8000583AD /* LogRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9411783BDB8000583AD /* LogRecordViewController.m */; };
+		5750B9451783BF3B000583AD /* LogAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9441783BF3B000583AD /* LogAnnotation.m */; };
+		5754376117850D100025E837 /* LogShoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5754376017850D100025E837 /* LogShoViewController.m */; };
 		57558DE51773D46700E982BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE41773D46700E982BF /* UIKit.framework */; };
 		57558DE71773D46700E982BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE61773D46700E982BF /* Foundation.framework */; };
 		57558DE91773D46700E982BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE81773D46700E982BF /* CoreGraphics.framework */; };
@@ -21,6 +24,22 @@
 		57558E051773D46700E982BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE61773D46700E982BF /* Foundation.framework */; };
 		57558E0D1773D46700E982BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57558E0B1773D46700E982BF /* InfoPlist.strings */; };
 		57558E101773D46700E982BF /* DiveForFunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E0F1773D46700E982BF /* DiveForFunTests.m */; };
+		57558E1A1773D51100E982BF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E191773D51100E982BF /* CoreData.framework */; };
+		57558E1C1773D51800E982BF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E1B1773D51800E982BF /* MapKit.framework */; };
+		57558E1E1773D52300E982BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E1D1773D52300E982BF /* CoreLocation.framework */; };
+		57558E211773D55E00E982BF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E201773D55E00E982BF /* MainViewController.m */; };
+		57558E231773E35300E982BF /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57558E221773E35300E982BF /* View.xib */; };
+		57558E261773FCBE00E982BF /* SCUBADIVING.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57558E241773FCBE00E982BF /* SCUBADIVING.xcdatamodeld */; };
+		57558E29177404B000E982BF /* DIVELOG.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E28177404B000E982BF /* DIVELOG.m */; };
+		57558E2C177404C700E982BF /* GISDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E2B177404C700E982BF /* GISDATA.m */; };
+		57558E32177409CB00E982BF /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E31177409CB00E982BF /* RouteViewController.m */; };
+		57558E351774182100E982BF /* CrumbPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E341774182100E982BF /* CrumbPath.m */; };
+		57558E381774185300E982BF /* CrumbPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E371774185300E982BF /* CrumbPathView.m */; };
+		5761664A1777E3FD00798728 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576166491777E3FD00798728 /* LogViewController.m */; };
+		57CE958C177421D100A9DF2A /* GISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958B177421D100A9DF2A /* GISViewController.m */; };
+		57CE958F1774220800A9DF2A /* RoutingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958E1774220800A9DF2A /* RoutingViewController.m */; };
+		57CE9592177427C100A9DF2A /* StartAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE9591177427C100A9DF2A /* StartAnnotation.m */; };
+		57CE9595177427D200A9DF2A /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE9594177427D200A9DF2A /* StopAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5750B9401783BDB8000583AD /* LogRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRecordViewController.h; sourceTree = "<group>"; };
+		5750B9411783BDB8000583AD /* LogRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRecordViewController.m; sourceTree = "<group>"; };
+		5750B9431783BF3B000583AD /* LogAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogAnnotation.h; sourceTree = "<group>"; };
+		5750B9441783BF3B000583AD /* LogAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogAnnotation.m; sourceTree = "<group>"; };
+		5754375F17850D100025E837 /* LogShoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogShoViewController.h; path = ../LogShoViewController.h; sourceTree = "<group>"; };
+		5754376017850D100025E837 /* LogShoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogShoViewController.m; path = ../LogShoViewController.m; sourceTree = "<group>"; };
 		57558DE11773D46700E982BF /* DiveForFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveForFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57558DE41773D46700E982BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57558DE61773D46700E982BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +78,33 @@
 		57558E0C1773D46700E982BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57558E0E1773D46700E982BF /* DiveForFunTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiveForFunTests.h; sourceTree = "<group>"; };
 		57558E0F1773D46700E982BF /* DiveForFunTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiveForFunTests.m; sourceTree = "<group>"; };
+		57558E191773D51100E982BF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		57558E1B1773D51800E982BF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57558E1D1773D52300E982BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		57558E1F1773D55E00E982BF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
+		57558E201773D55E00E982BF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
+		57558E221773E35300E982BF /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		57558E251773FCBE00E982BF /* SCUBADIVING.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SCUBADIVING.xcdatamodel; sourceTree = "<group>"; };
+		57558E27177404B000E982BF /* DIVELOG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIVELOG.h; sourceTree = "<group>"; };
+		57558E28177404B000E982BF /* DIVELOG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIVELOG.m; sourceTree = "<group>"; };
+		57558E2A177404C700E982BF /* GISDATA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GISDATA.h; sourceTree = "<group>"; };
+		57558E2B177404C700E982BF /* GISDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GISDATA.m; sourceTree = "<group>"; };
+		57558E30177409CB00E982BF /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteViewController.h; path = ../RouteViewController.h; sourceTree = "<group>"; };
+		57558E31177409CB00E982BF /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteViewController.m; path = ../RouteViewController.m; sourceTree = "<group>"; };
+		57558E331774182100E982BF /* CrumbPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrumbPath.h; path = ../CrumbPath.h; sourceTree = "<group>"; };
+		57558E341774182100E982BF /* CrumbPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPath.m; path = ../CrumbPath.m; sourceTree = "<group>"; };
+		57558E361774185300E982BF /* CrumbPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrumbPathView.h; path = ../CrumbPathView.h; sourceTree = "<group>"; };
+		57558E371774185300E982BF /* CrumbPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPathView.m; path = ../CrumbPathView.m; sourceTree = "<group>"; };
+		576166481777E3FD00798728 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogViewController.h; path = ../LogViewController.h; sourceTree = "<group>"; };
+		576166491777E3FD00798728 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogViewController.m; path = ../LogViewController.m; sourceTree = "<group>"; };
+		57CE958A177421D100A9DF2A /* GISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GISViewController.h; path = ../GISViewController.h; sourceTree = "<group>"; };
+		57CE958B177421D100A9DF2A /* GISViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GISViewController.m; path = ../GISViewController.m; sourceTree = "<group>"; };
+		57CE958D1774220800A9DF2A /* RoutingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoutingViewController.h; path = ../RoutingViewController.h; sourceTree = "<group>"; };
+		57CE958E1774220800A9DF2A /* RoutingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoutingViewController.m; path = ../RoutingViewController.m; sourceTree = "<group>"; };
+		57CE9590177427C100A9DF2A /* StartAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAnnotation.h; sourceTree = "<group>"; };
+		57CE9591177427C100A9DF2A /* StartAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAnnotation.m; sourceTree = "<group>"; };
+		57CE9593177427D200A9DF2A /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
+		57CE9594177427D200A9DF2A /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +112,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57558E1E1773D52300E982BF /* CoreLocation.framework in Frameworks */,
+				57558E1C1773D51800E982BF /* MapKit.framework in Frameworks */,
+				57558E1A1773D51100E982BF /* CoreData.framework in Frameworks */,
 				57558DE51773D46700E982BF /* UIKit.framework in Frameworks */,
 				57558DE71773D46700E982BF /* Foundation.framework in Frameworks */,
 				57558DE91773D46700E982BF /* CoreGraphics.framework in Frameworks */,
@@ -82,6 +137,9 @@
 		57558DD81773D46700E982BF = {
 			isa = PBXGroup;
 			children = (
+				57558E221773E35300E982BF /* View.xib */,
+				57CE959717742A0A00A9DF2A /* Database */,
+				57CE9596177427D500A9DF2A /* Annotations */,
 				57558DEA1773D46700E982BF /* DiveForFun */,
 				57558E081773D46700E982BF /* DiveForFunTests */,
 				57558DE31773D46700E982BF /* Frameworks */,
@@ -101,6 +159,9 @@
 		57558DE31773D46700E982BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57558E1D1773D52300E982BF /* CoreLocation.framework */,
+				57558E1B1773D51800E982BF /* MapKit.framework */,
+				57558E191773D51100E982BF /* CoreData.framework */,
 				57558DE41773D46700E982BF /* UIKit.framework */,
 				57558DE61773D46700E982BF /* Foundation.framework */,
 				57558DE81773D46700E982BF /* CoreGraphics.framework */,
@@ -112,6 +173,24 @@
 		57558DEA1773D46700E982BF /* DiveForFun */ = {
 			isa = PBXGroup;
 			children = (
+				5754375F17850D100025E837 /* LogShoViewController.h */,
+				5754376017850D100025E837 /* LogShoViewController.m */,
+				5750B9401783BDB8000583AD /* LogRecordViewController.h */,
+				5750B9411783BDB8000583AD /* LogRecordViewController.m */,
+				576166481777E3FD00798728 /* LogViewController.h */,
+				576166491777E3FD00798728 /* LogViewController.m */,
+				57CE958D1774220800A9DF2A /* RoutingViewController.h */,
+				57CE958E1774220800A9DF2A /* RoutingViewController.m */,
+				57CE958A177421D100A9DF2A /* GISViewController.h */,
+				57CE958B177421D100A9DF2A /* GISViewController.m */,
+				57558E361774185300E982BF /* CrumbPathView.h */,
+				57558E371774185300E982BF /* CrumbPathView.m */,
+				57558E331774182100E982BF /* CrumbPath.h */,
+				57558E341774182100E982BF /* CrumbPath.m */,
+				57558E30177409CB00E982BF /* RouteViewController.h */,
+				57558E31177409CB00E982BF /* RouteViewController.m */,
+				57558E1F1773D55E00E982BF /* MainViewController.h */,
+				57558E201773D55E00E982BF /* MainViewController.m */,
 				57558DF31773D46700E982BF /* AppDelegate.h */,
 				57558DF41773D46700E982BF /* AppDelegate.m */,
 				57558DEB1773D46700E982BF /* Supporting Files */,
@@ -150,6 +229,31 @@
 				57558E0B1773D46700E982BF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57CE9596177427D500A9DF2A /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				5750B9431783BF3B000583AD /* LogAnnotation.h */,
+				5750B9441783BF3B000583AD /* LogAnnotation.m */,
+				57CE9593177427D200A9DF2A /* StopAnnotation.h */,
+				57CE9594177427D200A9DF2A /* StopAnnotation.m */,
+				57CE9590177427C100A9DF2A /* StartAnnotation.h */,
+				57CE9591177427C100A9DF2A /* StartAnnotation.m */,
+			);
+			name = Annotations;
+			sourceTree = "<group>";
+		};
+		57CE959717742A0A00A9DF2A /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				57558E2A177404C700E982BF /* GISDATA.h */,
+				57558E2B177404C700E982BF /* GISDATA.m */,
+				57558E27177404B000E982BF /* DIVELOG.h */,
+				57558E28177404B000E982BF /* DIVELOG.m */,
+				57558E241773FCBE00E982BF /* SCUBADIVING.xcdatamodeld */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +331,7 @@
 				57558DF71773D46700E982BF /* Default.png in Resources */,
 				57558DF91773D46700E982BF /* Default@2x.png in Resources */,
 				57558DFB1773D46700E982BF /* Default-568h@2x.png in Resources */,
+				57558E231773E35300E982BF /* View.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +368,21 @@
 			files = (
 				57558DF11773D46700E982BF /* main.m in Sources */,
 				57558DF51773D46700E982BF /* AppDelegate.m in Sources */,
+				57558E211773D55E00E982BF /* MainViewController.m in Sources */,
+				57558E261773FCBE00E982BF /* SCUBADIVING.xcdatamodeld in Sources */,
+				57558E29177404B000E982BF /* DIVELOG.m in Sources */,
+				57558E2C177404C700E982BF /* GISDATA.m in Sources */,
+				57558E32177409CB00E982BF /* RouteViewController.m in Sources */,
+				57558E351774182100E982BF /* CrumbPath.m in Sources */,
+				57558E381774185300E982BF /* CrumbPathView.m in Sources */,
+				57CE958C177421D100A9DF2A /* GISViewController.m in Sources */,
+				57CE958F1774220800A9DF2A /* RoutingViewController.m in Sources */,
+				57CE9592177427C100A9DF2A /* StartAnnotation.m in Sources */,
+				57CE9595177427D200A9DF2A /* StopAnnotation.m in Sources */,
+				5761664A1777E3FD00798728 /* LogViewController.m in Sources */,
+				5750B9421783BDB8000583AD /* LogRecordViewController.m in Sources */,
+				5750B9451783BF3B000583AD /* LogAnnotation.m in Sources */,
+				5754376117850D100025E837 /* LogShoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +486,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveForFun/DiveForFun-Prefix.pch";
 				INFOPLIST_FILE = "DiveForFun/DiveForFun-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -377,6 +498,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveForFun/DiveForFun-Prefix.pch";
 				INFOPLIST_FILE = "DiveForFun/DiveForFun-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -435,6 +557,7 @@
 				57558E151773D46700E982BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		57558E161773D46700E982BF /* Build configuration list for PBXNativeTarget "DiveForFunTests" */ = {
 			isa = XCConfigurationList;
@@ -443,8 +566,22 @@
 				57558E181773D46700E982BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		57558E241773FCBE00E982BF /* SCUBADIVING.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				57558E251773FCBE00E982BF /* SCUBADIVING.xcdatamodel */,
+			);
+			currentVersion = 57558E251773FCBE00E982BF /* SCUBADIVING.xcdatamodel */;
+			path = SCUBADIVING.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 57558DD91773D46700E982BF /* Project object */;
 }
