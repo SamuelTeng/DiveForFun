@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DiveForFun/AppDelegate.m"
-         timestampString = "394514871.78974"
+         timestampString = "394696913.877959"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-initCoreData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DiveForFun/LogRecordViewController.m"
-         timestampString = "394593228.571272"
+         timestampString = "394696913.877959"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
          landmarkName = "-addAnnotations"
          landmarkType = "5">
       </FileBreakpoint>

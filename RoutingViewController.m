@@ -35,6 +35,7 @@
 @synthesize routeMap = _routeMap;
 @synthesize routeLine = _routeLine;
 @synthesize routeLineView = _routeLineView;
+@synthesize annotationsRemove;
 
 -(void)fetchData
 {
@@ -59,18 +60,31 @@
         NSLog(@"there's no any GIS data in this moment");
     }
     
-    for (GISDATA *coordinate in resultController.fetchedObjects) {
-        latArray = delegate.latGIS;
+    //for (GISDATA *coordinate in resultController.fetchedObjects) {
+        //latArray = delegate.latGIS;
         //[NSKeyedUnarchiver unarchiveObjectWithData:coordinate.latitude];
-        lonArray = delegate.lonGIS;
+        //lonArray = delegate.lonGIS;
         //[NSKeyedUnarchiver unarchiveObjectWithData:coordinate.lontitude];
-        
+    
+    latArray = delegate.latGIS;
+    lonArray = delegate.lonGIS;
+    
         MKMapPoint northPoint;
         MKMapPoint southPoint;
         
-        CLLocationCoordinate2D _rectCoordinate;
-        
-        MKMapPoint *pointArr = malloc(sizeof(CLLocationCoordinate2D )*latArray.count);
+        //CLLocationCoordinate2D _rectCoordinate;
+    
+    /*initialized _coordinate for avoiding passing compiler called 'an unlogic argumet value'*/
+    
+        CLLocationCoordinate2D _coordinate = CLLocationCoordinate2DMake(0, 0);
+    
+    if (latArray.count == 0) {
+        return;
+    }
+        //MKMapPoint *pointArr = malloc(sizeof(CLLocationCoordinate2D) * latArray.count);
+    
+    /*change to this line 'cause mkmappoint isn't the same as cllocationCoordinate2D, even though they both have same bytes*/
+        MKMapPoint *pointArr = malloc(sizeof(MKMapPoint) * latArray.count);
         
         for (int i = 0 ; i<latArray.count; i++) {
             NSString *latString = [latArray objectAtIndex:i];
@@ -82,7 +96,8 @@
             CLLocationDegrees latitude = [[latlonArr objectAtIndex:0]doubleValue];
             CLLocationDegrees lontitude = [[latlonArr objectAtIndex:1]doubleValue];
             
-            CLLocationCoordinate2D _coordinate = CLLocationCoordinate2DMake(latitude, lontitude);
+            //CLLocationCoordinate2D
+            _coordinate = CLLocationCoordinate2DMake(latitude, lontitude);
             MKMapPoint point = MKMapPointForCoordinate(_coordinate);
             
             if (i == 0) {
@@ -104,17 +119,23 @@
             }
             
             pointArr[i] = point;
-            _rectCoordinate = _coordinate;
+            //_rectCoordinate = _coordinate;
         }
         
         _routeLine = [MKPolyline polylineWithPoints:pointArr count:latArray.count];
-        
+    
+    /*free the used array to avoid memeory leak*/
+        free(pointArr);
+    
         //_routeRect = MKMapRectMake(southPoint.x, southPoint.y, northPoint.x, northPoint.y);
         
         /*zoom in to desired loading area*/
-        MKCoordinateRegion drawRegion = MKCoordinateRegionMakeWithDistance(_rectCoordinate, 400, 400);
+        //MKCoordinateRegion drawRegion = MKCoordinateRegionMakeWithDistance(_rectCoordinate, 400, 400);
+        
+        MKCoordinateRegion drawRegion = MKCoordinateRegionMakeWithDistance(_coordinate, 400, 400);
         [_routeMap setRegion:drawRegion];
-    }
+        
+    //}
     
     [_routeMap addOverlay:_routeLine];
 }
@@ -131,6 +152,7 @@
     
     _annotations = [NSArray arrayWithObjects:[annotations objectAtIndex:0],[annotations objectAtIndex:1], nil];
     [_routeMap addAnnotations:_annotations];
+    annotationsRemove = _annotations;
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
@@ -197,7 +219,9 @@
 -(void)tableViewShow:(id)sender
 {
     [_routeMap removeAnnotations:_annotations];
-    [delegate.navi pushViewController:table animated:YES];
+
+    [delegate.navi pushViewController:table animated:NO];
+    
 }
 
 -(void)loadView
@@ -234,9 +258,17 @@
 {
     [super viewDidLoad];
     [self fetchData];
+    
+	// Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [super viewWillAppear:animated];
     [self loadRoute];
     [self addAnnotation];
-	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning

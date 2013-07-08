@@ -3,14 +3,14 @@
     <entity name="DIVELOG" representedClassName="DIVELOG" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dive_time" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="end_pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="end_pressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gas_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lontitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="max_depth" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="others" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="start_pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="start_pressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visibility" optional="YES" attributeType="String" syncable="YES"/>
     </entity>

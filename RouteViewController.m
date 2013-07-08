@@ -12,8 +12,9 @@
 #import "AppDelegate.h"
 #import "GISDATA.h"
 #import "GISViewController.h"
-#import "MainViewController.h"
+//#import "MainViewController.h"
 #import "RoutingViewController.h"
+#import "LogRecordViewController.h"
 
 @interface RouteViewController (){
     AppDelegate *appDelegate ;
@@ -25,8 +26,9 @@
     NSMutableArray *courseArray;
     NSMutableArray *altitudeArray;
     NSMutableArray *timestampArry;
-    MainViewController *mainViewController;
+    //MainViewController *mainViewController;
     RoutingViewController *routingViewController;
+    LogRecordViewController *logRecordViewController;
 }
 
 
@@ -116,6 +118,7 @@
     
     _toggleBackgroundButton.hidden = YES;
     
+    
     NSLog(@"begin with %@", [NSDate date]);
     
     [latitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.latitude]];
@@ -195,14 +198,19 @@
     
 }
 
--(void)back:(id)sender
-{
-    [appDelegate.navi pushViewController:mainViewController animated:YES];
-}
+//-(void)back:(id)sender
+//{
+//    [appDelegate.navi pushViewController:mainViewController animated:YES];
+//}
 
 -(void)tableViewShow:(id)sender
 {
     [appDelegate.navi pushViewController:tableViewController animated:YES];
+}
+
+-(void)log:(id)sender
+{
+    [appDelegate.navi pushViewController:logRecordViewController animated:YES];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -266,9 +274,10 @@
     self.navigationItem.hidesBackButton = YES;
     
 
-    mainViewController = [[MainViewController alloc] init];
+    //mainViewController = [[MainViewController alloc] init];
     tableViewController = [[GISViewController alloc] init];
     routingViewController = [[RoutingViewController alloc] init];
+    logRecordViewController = [[LogRecordViewController alloc] init];
     
     _map = [[MKMapView alloc] initWithFrame:appDelegate.window.frame];
     _map.showsUserLocation = YES;
@@ -295,11 +304,15 @@
     
     
 
-    UIBarButtonItem *toMain = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem = toMain;
+//    UIBarButtonItem *toMain = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
+//    self.navigationItem.leftBarButtonItem = toMain;
     
     UIBarButtonItem *toTable = [[UIBarButtonItem alloc] initWithTitle:@"Table" style:UIBarButtonItemStyleBordered target:self action:@selector(tableViewShow:)];
-    self.navigationItem.rightBarButtonItem = toTable;
+    
+    UIBarButtonItem *toLog = [[UIBarButtonItem alloc] initWithTitle:@"Log" style:UIBarButtonItemStyleBordered target:self action:@selector(log:)];
+    NSArray *rightBarArr = [NSArray arrayWithObjects:toTable,toLog, nil];
+    self.navigationItem.rightBarButtonItems = rightBarArr;
+
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;

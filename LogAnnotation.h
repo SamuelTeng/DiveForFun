@@ -13,5 +13,12 @@
 @property (nonatomic) CLLocationCoordinate2D _coordinate;
 @property (nonatomic,strong) NSString *_title;
 @property (nonatomic,strong) NSString *_subtitle;
+@property (nonatomic,strong) NSString *timeOfDiving;
+@property (nonatomic,strong) NSString *airType;
+@property (nonatomic,strong) NSString *pressureOfStart;
+@property (nonatomic,strong) NSString *pressureOfEnd;
+@property (nonatomic,strong) NSString *maxiumDepth;
+@property (nonatomic,strong) NSString *visibility;
+@property (nonatomic,strong) NSString *temperature;
 
 @end

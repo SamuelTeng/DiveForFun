@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIAlertViewDelegate>
 
 
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;

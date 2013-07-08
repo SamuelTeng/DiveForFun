@@ -11,7 +11,7 @@
 
 @implementation AppDelegate
 
-@synthesize navi,mainViewController,managedModel,persistentstoreCoordinator,context,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite;
+@synthesize navi,managedModel,persistentstoreCoordinator,context,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite,routeViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,8 +28,9 @@
     self.logDate = [[NSArray alloc] init];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.mainViewController = [[MainViewController alloc] init];
-    self.navi = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    //self.mainViewController = [[MainViewController alloc] init];
+    self.routeViewController = [[RouteViewController alloc] init];
+    self.navi = [[UINavigationController alloc] initWithRootViewController:routeViewController];
     self.window.rootViewController = navi;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

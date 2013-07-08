@@ -11,19 +11,30 @@
 #import "DIVELOG.h"
 #import "LogViewController.h"
 #import "LogAnnotation.h"
-#import "MainViewController.h"
+//#import "MainViewController.h"
+#import "LogShoViewController.h"
+#import "RouteViewController.h"
 
 @interface LogRecordViewController (){
     
     AppDelegate *delegate;
     DIVELOG *diveLog;
     LogViewController *logViewController;
-    MainViewController *mainViewController;
+    //MainViewController *mainViewController;
+    LogShoViewController *logShowController;
+    RouteViewController *routeViewController;
     NSFetchedResultsController *resultController;
     NSArray *dateArr;
     NSArray *latArr;
     NSArray *lonArr;
     NSArray *siteArr;
+    NSArray *timeArr;
+    NSArray *depthArr;
+    NSArray *airArr;
+    NSArray *staArr;
+    NSArray *endArr;
+    NSArray *visiArr;
+    NSArray *tempArr;
     NSMutableArray *annotations;
     NSArray *_annotations;
     LogAnnotation *logAnnotation;
@@ -63,12 +74,37 @@
         siteArr = [resultController.fetchedObjects valueForKey:@"site"];
         latArr = [resultController.fetchedObjects valueForKey:@"latitude"];
         lonArr = [resultController.fetchedObjects valueForKey:@"lontitude"];
+        timeArr = [resultController.fetchedObjects valueForKey:@"dive_time"];
+        depthArr = [resultController.fetchedObjects valueForKey:@"max_depth"];
+        airArr = [resultController.fetchedObjects valueForKey:@"gas_type"];
+        staArr = [resultController.fetchedObjects valueForKey:@"start_pressure"];
+        endArr = [resultController.fetchedObjects valueForKey:@"end_pressure"];
+        visiArr = [resultController.fetchedObjects valueForKey:@"visibility"];
+        tempArr = [resultController.fetchedObjects valueForKey:@"temperature"];
     }
     
     delegate.logDate = dateArr;
     delegate.logSite = siteArr;
     delegate.logLat = latArr;
     delegate.logLon = lonArr;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    /*passing data to deisred detail description viewcontroller*/
+    logShowController = [[LogShoViewController alloc] init];
+    
+    logShowController.annotation_ = view.annotation;
+    
+    
+    /*following is the way to keep navi bar when adopting UIModalTransitionStyle into desired animation-in viewController*/
+    UINavigationController *navLogViewController = [[UINavigationController alloc] initWithRootViewController:logShowController];
+    
+    navLogViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:navLogViewController animated:YES completion:^{
+        NULL;
+    }];
+
 }
 
 -(void)addAnnotations
@@ -84,9 +120,18 @@
         logAnnotation._coordinate = logCoordinate;
         logAnnotation._title = [NSString stringWithFormat:@"%@",[dateArr objectAtIndex:i]];
         logAnnotation._subtitle = [NSString stringWithFormat:@"%@",[siteArr objectAtIndex:i]];
+        logAnnotation.timeOfDiving = [NSString stringWithFormat:@"%@", [timeArr objectAtIndex:i]];
+        logAnnotation.airType = [NSString stringWithFormat:@"%@",[airArr objectAtIndex:i]];
+        logAnnotation.pressureOfStart = [NSString stringWithFormat:@"%@",[staArr objectAtIndex:i]];
+        logAnnotation.pressureOfEnd = [NSString stringWithFormat:@"%@",[endArr objectAtIndex:i]];
+        logAnnotation.maxiumDepth = [NSString stringWithFormat:@"%@",[depthArr objectAtIndex:i]];
+        logAnnotation.temperature = [NSString stringWithFormat:@"%@",[tempArr objectAtIndex:i]];
+        logAnnotation.visibility = [NSString stringWithFormat:@"%@",[visiArr objectAtIndex:i]];
+        
         [logMap addAnnotation:logAnnotation];
         [annotations addObject:logAnnotation];
     }
+
     /*make all annotations visible when view load*/
     MKMapRect focus = MKMapRectNull;
     for (logAnnotation in annotations) {
@@ -117,9 +162,21 @@
             customView.pinColor = MKPinAnnotationColorPurple;
             customView.animatesDrop = NO;
             customView.canShowCallout = YES;
+            
+            /*show right disclosure and push to logShow view*/
+            // note: you can assign a specific call out accessory view, or as MKMapViewDelegate you can implement:
+            //  - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
+            //
+
+            UIButton *showLog = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+
+            customView.rightCalloutAccessoryView = showLog;
+            return customView;
         }else{
             logPin.annotation = aAnnotation;
         }
+        
+        return logPin;
     }
     
     return nil;
@@ -134,14 +191,15 @@
 
 -(void)toMainView:(id)sender
 {
-    [delegate.navi pushViewController:mainViewController animated:NO];
+    [logMap removeAnnotations:annotations];
+    [delegate.navi pushViewController:routeViewController animated:NO];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case 0:
-            [delegate.navi pushViewController:mainViewController animated:NO];
+            [delegate.navi pushViewController:routeViewController animated:NO];
             break;
             
         case 1:
@@ -165,8 +223,12 @@
     
     [self.view addSubview:logMap];
     
+    
+    //mainViewController = [[MainViewController alloc] init];
+    
     logViewController = [[LogViewController alloc] init];
-    mainViewController = [[MainViewController alloc] init];
+    routeViewController = [[RouteViewController alloc] init];
+    
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(toMainView:)];
     self.navigationItem.leftBarButtonItem = back;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toLogView:)];

@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MainViewController.h"
+//#import "MainViewController.h"
+#import "RouteViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) UINavigationController *navi;
-@property (nonatomic,strong) MainViewController *mainViewController;
+//@property (nonatomic,strong) MainViewController *mainViewController;
+@property (nonatomic,strong) RouteViewController *routeViewController;
 
 @property (readonly , strong , nonatomic) NSManagedObjectModel *managedModel;
 @property (readonly , strong , nonatomic) NSPersistentStoreCoordinator *persistentstoreCoordinator;
@@ -28,6 +30,8 @@
 @property (nonatomic,strong) NSArray *logLon;
 @property (nonatomic,strong) NSArray *logDate;
 @property (nonatomic,strong) NSArray *logSite;
+
+
 
 
 @end

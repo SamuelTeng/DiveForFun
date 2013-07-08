@@ -14,6 +14,6 @@
 @property (nonatomic,strong) MKMapView *routeMap;
 @property (nonatomic,strong) MKPolylineView *routeLineView;
 @property (nonatomic,strong) MKPolyline *routeLine;
-
+@property (nonatomic,strong) NSArray *annotationsRemove;
 
 @end

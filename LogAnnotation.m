@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 @implementation LogAnnotation
-@synthesize _coordinate,_title,_subtitle;
+@synthesize _coordinate,_title,_subtitle,airType,timeOfDiving,temperature,pressureOfEnd,pressureOfStart,maxiumDepth,visibility;
 
 -(CLLocationCoordinate2D)coordinate
 {

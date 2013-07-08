@@ -45,7 +45,14 @@
 -(void)toMap:(id)sender
 {
     [delegate.navi pushViewController:routeViewController animated:YES];
+    NSLog(@"table page");
 }
+
+//-(void)goBack:(id)sender
+//{
+//    [routingViewController.routeMap removeAnnotations:routingViewController.annotationsRemove];
+//    NSLog(@"remove annotations");
+//}
 
 -(void)loadView
 {
@@ -58,6 +65,8 @@
     UIBarButtonItem *toMap = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:self action:@selector(toMap:)];
     self.navigationItem.leftBarButtonItem = toMap;
     
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Table" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack:)];
+//    self.navigationItem.backBarButtonItem = backButton;
 }
 
 - (void)viewDidLoad
@@ -193,6 +202,8 @@
     delegate.altGIS = altArr;
     delegate.courseGIS = couArr;
     delegate.timeGIS = tsmArr;
+    
+
     
     [delegate.navi pushViewController:routingViewController animated:YES];
 }

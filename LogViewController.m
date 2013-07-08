@@ -62,68 +62,88 @@
 {
     NSString *dateStr = dateField.text;
     NSLog(@"%@",dateStr);
-    dateField.text = nil;
+    
     
     NSString *site = siteField.text;
-    siteField.text = nil;
     
+
+  
     NSString *latitude = latField.text;
-    latField.text = nil;
     
-    NSString *lontitude = lonField.text;
-    lonField.text = nil;
+        
+    NSString *lontitude= lonField.text;
     
+
+        
     NSString *maxDepth = maxDepField.text;
-    maxDepField.text = nil;
+    
     
     NSString *gasType = gasField.text;
-    gasField.text = nil;
+    
     
     NSString *diveTime = divetimeField.text;
     NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
     [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-    divetimeField.text = nil;
+    
     
     NSString *visibility = visiField.text;
-    visiField.text = nil;
+    
     
     NSString *temperature = temperField.text;
-    temperField.text = nil;
+   
     
     NSString *startPressure = staPreField.text;
-    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-    [startPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-    staPreField.text = nil;
+//    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+//    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+//    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+   
     
     NSString *endPressure = endPreField.text;
-    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-    endPreField.text = nil;
+//    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+//    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+    dateField.text = nil;
+    siteField.text = nil;
+    latField.text = nil;
+    lonField.text = nil;
+    maxDepField.text = nil;
+    gasField.text = nil;
+    divetimeField.text = nil;
+    visiField.text = nil;
+    temperField.text = nil;
+    staPreField.text = nil;
+    endPreField.text = nil; 
     
     DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
-    database.date = dateStr;
-    database.site = site;
-    database.latitude = latitude;
-    database.lontitude = lontitude;
-    database.max_depth = maxDepth;
-    database.gas_type = gasType;
-    database.dive_time = _diveTime;
-    database.visibility = visibility;
-    database.temperature = temperature;
-    database.start_pressure = _startPressure;
-    database.end_pressure = _endPressure;
+   
+        database.date = dateStr;
+        database.site = site;
+        database.latitude = latitude;
+        database.lontitude = lontitude;
+        database.max_depth = maxDepth;
+        database.gas_type = gasType;
+        database.dive_time = _diveTime;
+        database.visibility = visibility;
+        database.temperature = temperature;
+        database.start_pressure = startPressure;
+        database.end_pressure = endPressure;
     
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"error:%@", [error localizedFailureReason]);
-    }
-    
-    //[delegate.navi pushViewController:logRecordViewController animated:YES];
-}
 
+        
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"error:%@", [error localizedFailureReason]);
+        }
+        
+        
+        [delegate.navi pushViewController:logRecordViewController animated:YES];
+
+    }
+            
+
+    
+    
 -(void)toLogRecord:(id)sender
 {
     [delegate.navi pushViewController:logRecordViewController animated:YES];
@@ -497,6 +517,36 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ((dateField.text.length > 0) && (latField.text.length > 0) && (lonField.text.length > 0)
+        && (gasField.text.length > 0) && (staPreField.text.length > 0) &&
+        (endPreField.text.length > 0) && (maxDepField.text.length > 0) && (divetimeField.text.length >0) && (temperField.text.length > 0) && (visiField.text.length > 0)) {
+               self.navigationItem.rightBarButtonItem.enabled = YES;
+            }
+            else{
+        
+                self.navigationItem.rightBarButtonItem.enabled = NO;
+            }
+
+}
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+////    if (dateField.text.length == 0||  latField.text.length == 0 || lonField.text.length == 0 || gasField.text.length == 0 || staPreField.text.length == 0 || endPreField.text.length == 0 || maxDepField.text.length == 0 || divetimeField.text.length == 0 || temperField.text.length == 0 || visiField.text.length == 0) {
+////        
+////        self.navigationItem.rightBarButtonItem.enabled = NO;
+////    }
+//    if ((latField.text.length > 0) && (lonField.text.length > 0)) {
+//        self.navigationItem.rightBarButtonItem.enabled = YES;
+//    }
+//    else{
+//    
+//        self.navigationItem.rightBarButtonItem.enabled = NO;
+//    }
+//    return YES;
+//}
+
 -(void)textAndLabel
 {
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
@@ -652,16 +702,17 @@
     cAndf = [NSArray arrayWithObjects:@"°C",@"°F", nil];
     
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToData:)];
-    
+    self.navigationItem.rightBarButtonItem = save;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     delegate = [[UIApplication sharedApplication] delegate];
     managedObjectContext = delegate.context;
     
     logRecordViewController = [[LogRecordViewController alloc] init];
     
-    UIBarButtonItem *toLogRecord = [[UIBarButtonItem alloc] initWithTitle:@"Log" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogRecord:)];
-    NSArray *barButtonArr = [NSArray arrayWithObjects:save,toLogRecord, nil];
-    self.navigationItem.rightBarButtonItems = barButtonArr;
+//    UIBarButtonItem *toLogRecord = [[UIBarButtonItem alloc] initWithTitle:@"Log" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogRecord:)];
+//    NSArray *barButtonArr = [NSArray arrayWithObjects:save,toLogRecord, nil];
+    //self.navigationItem.rightBarButtonItems = barButtonArr;
     //self.navigationItem.hidesBackButton = YES;
 }
 

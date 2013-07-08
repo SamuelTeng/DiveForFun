@@ -27,7 +27,6 @@
 		57558E1A1773D51100E982BF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E191773D51100E982BF /* CoreData.framework */; };
 		57558E1C1773D51800E982BF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E1B1773D51800E982BF /* MapKit.framework */; };
 		57558E1E1773D52300E982BF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E1D1773D52300E982BF /* CoreLocation.framework */; };
-		57558E211773D55E00E982BF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E201773D55E00E982BF /* MainViewController.m */; };
 		57558E231773E35300E982BF /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57558E221773E35300E982BF /* View.xib */; };
 		57558E261773FCBE00E982BF /* SCUBADIVING.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57558E241773FCBE00E982BF /* SCUBADIVING.xcdatamodeld */; };
 		57558E29177404B000E982BF /* DIVELOG.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E28177404B000E982BF /* DIVELOG.m */; };
@@ -81,8 +80,6 @@
 		57558E191773D51100E982BF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		57558E1B1773D51800E982BF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57558E1D1773D52300E982BF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		57558E1F1773D55E00E982BF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
-		57558E201773D55E00E982BF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
 		57558E221773E35300E982BF /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		57558E251773FCBE00E982BF /* SCUBADIVING.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SCUBADIVING.xcdatamodel; sourceTree = "<group>"; };
 		57558E27177404B000E982BF /* DIVELOG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIVELOG.h; sourceTree = "<group>"; };
@@ -189,8 +186,6 @@
 				57558E341774182100E982BF /* CrumbPath.m */,
 				57558E30177409CB00E982BF /* RouteViewController.h */,
 				57558E31177409CB00E982BF /* RouteViewController.m */,
-				57558E1F1773D55E00E982BF /* MainViewController.h */,
-				57558E201773D55E00E982BF /* MainViewController.m */,
 				57558DF31773D46700E982BF /* AppDelegate.h */,
 				57558DF41773D46700E982BF /* AppDelegate.m */,
 				57558DEB1773D46700E982BF /* Supporting Files */,
@@ -368,7 +363,6 @@
 			files = (
 				57558DF11773D46700E982BF /* main.m in Sources */,
 				57558DF51773D46700E982BF /* AppDelegate.m in Sources */,
-				57558E211773D55E00E982BF /* MainViewController.m in Sources */,
 				57558E261773FCBE00E982BF /* SCUBADIVING.xcdatamodeld in Sources */,
 				57558E29177404B000E982BF /* DIVELOG.m in Sources */,
 				57558E2C177404C700E982BF /* GISDATA.m in Sources */,

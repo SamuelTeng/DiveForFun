@@ -21,8 +21,8 @@
 @property (nonatomic, retain) NSString * site;
 @property (nonatomic, retain) NSString * visibility;
 @property (nonatomic, retain) NSString * temperature;
-@property (nonatomic, retain) NSNumber * start_pressure;
-@property (nonatomic, retain) NSNumber * end_pressure;
+@property (nonatomic, retain) NSString * start_pressure;
+@property (nonatomic, retain) NSString * end_pressure;
 @property (nonatomic, retain) NSString * others;
 
 @end
