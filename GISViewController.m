@@ -17,13 +17,13 @@
     GISDATA *database;
     RouteViewController *routeViewController;
     RoutingViewController *routingViewController;
-    NSFetchedResultsController *resultController;
+    //NSFetchedResultsController *resultController;
 }
-
+@property (nonatomic,strong) NSFetchedResultsController *resultController;
 @end
 
 @implementation GISViewController
-
+@synthesize resultController;
 
 -(void)fetchData
 {
@@ -79,6 +79,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewDidUnload
+{
+    database = nil;
+    routingViewController = nil;
+    routeViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning

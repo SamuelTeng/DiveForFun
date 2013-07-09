@@ -14,13 +14,13 @@
     
     AppDelegate *delegate;
     LogRecordViewController *logRecordViewController;
-    UITextView *log;
+    //UITextView *log;
 }
-
+@property (nonatomic,strong) UITextView *log;
 @end
 
 @implementation LogShoViewController
-@synthesize annotation_,date,site,time,airType,preSta,preEnd,maxDep,temp,visib;
+@synthesize annotation_,date,site,time,airType,preSta,preEnd,maxDep,temp,visib,log;
 
 -(void)toLogRecord:(id)sender
 {
@@ -74,6 +74,11 @@
     self.navigationItem.leftBarButtonItem = toRecord;
 
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidUnload
+{
+    logRecordViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning

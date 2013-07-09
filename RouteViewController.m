@@ -29,6 +29,9 @@
     //MainViewController *mainViewController;
     RoutingViewController *routingViewController;
     LogRecordViewController *logRecordViewController;
+    //UIButton *_start;
+    //UIButton *_stop;
+    
 }
 
 
@@ -39,6 +42,11 @@
 @property (nonatomic,strong) CrumbPath *path;
 @property (nonatomic,strong) CrumbPathView *pathView;
 @property (nonatomic,strong) UIView *containerView;
+@property (nonatomic,strong) NSMutableArray *latitudeArray;
+@property (nonatomic,strong) NSMutableArray *lontitudeArray;
+@property (nonatomic,strong) NSMutableArray *courseArray;
+@property (nonatomic,strong) NSMutableArray *altitudeArray;
+@property (nonatomic,strong) NSMutableArray *timestampArry;
 @end
 
 @implementation RouteViewController
@@ -51,22 +59,31 @@
 @synthesize location = _location;
 @synthesize staAndsto = _staAndsto;
 @synthesize toggleBackgroundButton = _toggleBackgroundButton;
-
+@synthesize latitudeArray,lontitudeArray,courseArray,altitudeArray,timestampArry;
 - (void)switchToBackgroundMode:(BOOL)background
 {
     
+    if (_toggleBackgroundButton.isOn) {
+        _map.showsUserLocation = YES;
+        [self becomeFirstResponder];
+    }else{
+        _map.showsUserLocation = NO;
+        [self resignFirstResponder];
+    }
     if (background) {
         if (! _toggleBackgroundButton.isOn){
             
             [_locationManager stopUpdatingLocation];
             _locationManager.delegate = nil;
+            NSLog(@"didn't update at background");
         }
         
     }else{
         
-        if (!_toggleBackgroundButton.isOn) {
+        if (_toggleBackgroundButton.isOn) {
             _locationManager.delegate = self;
             [_locationManager startUpdatingLocation];
+            NSLog(@"update at background");
         }
     }
 }
@@ -107,19 +124,25 @@
     
     NSTimeInterval eventInterval = [self.location.timestamp timeIntervalSinceNow];
     [timestampArry addObject:[NSMutableString stringWithFormat:@"%f", eventInterval]];
-    
+
     
 }
 
--(void)trackIngstart:(id)sender
+-(void)trackingStart
 {
     [_locationManager startUpdatingLocation];
+    
     [_map setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:NO];
     
     _toggleBackgroundButton.hidden = YES;
     
+    UIBarButtonItem *hideTable = self.navigationItem.rightBarButtonItems [0];
+    hideTable.enabled = NO;
+    UIBarButtonItem *hideLog = [self.navigationItem.rightBarButtonItems lastObject];
+    hideLog.enabled = NO;
     
-    NSLog(@"begin with %@", [NSDate date]);
+    
+    NSLog(@"begin with %@", [_map.userLocation.location timestamp]);
     
     [latitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.latitude]];
     
@@ -130,8 +153,9 @@
     [altitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.verticalAccuracy]];
     NSLog(@"timestamp:%@",_map.userLocation.location.timestamp);
     //NSTimeInterval eventInterval = [_map.userLocation.location.timestamp timeIntervalSinceNow];
-    [timestampArry addObject:[NSMutableString stringWithFormat:@"%@", _map.userLocation.location.timestamp]];
-
+   [timestampArry addObject:[NSMutableString stringWithFormat:@"%@", _map.userLocation.location.timestamp]];
+    //[timestampArry addObject:[NSMutableString stringWithFormat:@"%f", eventInterval]];
+    
     
     /*record every 30 seconds*/
     timer = [NSTimer timerWithTimeInterval:10.0 target:self selector:@selector(updating:) userInfo:nil repeats:YES];
@@ -140,10 +164,43 @@
     if (nil == coordinateArray) {
         coordinateArray = [[NSMutableArray alloc] init];
     }
-    
+
 }
 
--(void)trackingStop:(id)sender
+//-(void)trackIngstart:(id)sender
+//{
+//    [_locationManager startUpdatingLocation];
+//    
+//    [_map setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:NO];
+//    
+//    _toggleBackgroundButton.hidden = YES;
+//    
+//    
+//    NSLog(@"begin with %@", [NSDate date]);
+//    
+//    [latitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.latitude]];
+//    
+//    [lontitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.longitude]];
+//    
+//    [courseArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.course]];
+//    
+//    [altitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.verticalAccuracy]];
+//    NSLog(@"timestamp:%@",_map.userLocation.location.timestamp);
+//    //NSTimeInterval eventInterval = [_map.userLocation.location.timestamp timeIntervalSinceNow];
+//    [timestampArry addObject:[NSMutableString stringWithFormat:@"%@", _map.userLocation.location.timestamp]];
+//
+//    
+//    /*record every 30 seconds*/
+//    timer = [NSTimer timerWithTimeInterval:10.0 target:self selector:@selector(updating:) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//    
+//    if (nil == coordinateArray) {
+//        coordinateArray = [[NSMutableArray alloc] init];
+//    }
+//    
+//}
+
+-(void)trackStop
 {
     [_locationManager stopUpdatingLocation];
     [_map setUserTrackingMode:MKUserTrackingModeNone animated:NO];
@@ -158,6 +215,7 @@
     
     //NSTimeInterval eventInterval = [_map.userLocation.location.timestamp timeIntervalSinceNow];
     [timestampArry addObject:[NSMutableString stringWithFormat:@"%@", _map.userLocation.location.timestamp]];
+    //[timestampArry addObject:[NSMutableString stringWithFormat:@"%f", eventInterval]];
     
     NSData *latitudeData = [NSKeyedArchiver archivedDataWithRootObject:latitudeArray];
     
@@ -172,13 +230,13 @@
     /*putting GIS info into database*/
     GISDATA *database = (GISDATA *)[NSEntityDescription insertNewObjectForEntityForName:@"GISDATA" inManagedObjectContext:managedObjectContext];
     
-
+    
     database.latitude = latitudeData;
     database.lontitude = lontitudeData;
     database.course = courseData;
     database.altitude = altitudeData;
     database.timestamp = timestampData;
-
+    
     [database setDate:[NSDate date]];
     
     NSError *error;
@@ -191,12 +249,67 @@
     
     
     [self reloadData];
-
+    
     
     /*stop the timer*/
     [timer invalidate];
-    
+
 }
+
+//-(void)trackingStop:(id)sender
+//{
+//    [_locationManager stopUpdatingLocation];
+//    [_map setUserTrackingMode:MKUserTrackingModeNone animated:NO];
+//    
+//    [latitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.latitude]];
+//    
+//    [lontitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.coordinate.longitude]];
+//    
+//    [courseArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.course]];
+//    
+//    [altitudeArray addObject:[NSMutableString stringWithFormat:@"%f", _map.userLocation.location.verticalAccuracy]];
+//    
+//    //NSTimeInterval eventInterval = [_map.userLocation.location.timestamp timeIntervalSinceNow];
+//    [timestampArry addObject:[NSMutableString stringWithFormat:@"%@", _map.userLocation.location.timestamp]];
+//    
+//    NSData *latitudeData = [NSKeyedArchiver archivedDataWithRootObject:latitudeArray];
+//    
+//    NSData *lontitudeData = [NSKeyedArchiver archivedDataWithRootObject:lontitudeArray];
+//    
+//    NSData *courseData = [NSKeyedArchiver archivedDataWithRootObject:courseArray];
+//    
+//    NSData *altitudeData = [NSKeyedArchiver archivedDataWithRootObject:altitudeArray];
+//    
+//    NSData *timestampData = [NSKeyedArchiver archivedDataWithRootObject:timestampArry];
+//    //NSLog(@"end time:%@", [timestampArry lastObject]);
+//    /*putting GIS info into database*/
+//    GISDATA *database = (GISDATA *)[NSEntityDescription insertNewObjectForEntityForName:@"GISDATA" inManagedObjectContext:managedObjectContext];
+//    
+//
+//    database.latitude = latitudeData;
+//    database.lontitude = lontitudeData;
+//    database.course = courseData;
+//    database.altitude = altitudeData;
+//    database.timestamp = timestampData;
+//
+//    [database setDate:[NSDate date]];
+//    
+//    NSError *error;
+//    if (![managedObjectContext save:&error]) {
+//        NSLog(@"error:%@", [error localizedFailureReason]);
+//    }
+//    
+//    
+//    NSLog(@"number of test array is %i", latitudeArray.count);
+//    
+//    
+//    [self reloadData];
+//
+//    
+//    /*stop the timer*/
+//    [timer invalidate];
+//    
+//}
 
 //-(void)back:(id)sender
 //{
@@ -219,7 +332,6 @@
     self.location = [locations lastObject];
     NSTimeInterval eventInterval = [newLocation.timestamp timeIntervalSinceNow];
     
-
     
     if (newLocation) {
         if (abs(eventInterval) < 10.0) {
@@ -255,6 +367,36 @@
     NSLog(@"error = %@", [error localizedFailureReason]);
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    
+    status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusDenied) {
+        //_start.enabled = NO;
+        //_stop.enabled = NO;
+        [self resignFirstResponder];
+        
+    }else if (status == kCLAuthorizationStatusNotDetermined){
+    
+        //_start.enabled = NO;
+        //_stop.enabled = NO;
+        [self resignFirstResponder];
+        
+    }else if (status == kCLAuthorizationStatusRestricted){
+    
+       // _start.enabled = NO;
+       // _stop.enabled = NO;
+        [self resignFirstResponder];
+        
+    }else if (status == kCLAuthorizationStatusAuthorized){
+    
+       // _start.enabled = YES;
+        //_stop.enabled = YES;
+        [self becomeFirstResponder];
+    }
+    
+}
+
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id < MKOverlay >)overlay
 {
     if (!self.pathView) {
@@ -280,29 +422,31 @@
     logRecordViewController = [[LogRecordViewController alloc] init];
     
     _map = [[MKMapView alloc] initWithFrame:appDelegate.window.frame];
-    _map.showsUserLocation = YES;
+    
     _map.delegate = self;
     [self.view addSubview:_map];
     
-    UIButton *test = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [test setTitle:@"Start" forState:UIControlStateNormal];
-    test.frame = CGRectMake(270, 370, 50, 40);
-    [test addTarget:self action:@selector(trackIngstart:) forControlEvents:UIControlEventTouchUpInside];
-    _staAndsto = test;
-    [_map addSubview:_staAndsto];
-    
-    UIButton *stop = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [stop setTitle:@"Stop" forState:UIControlStateNormal];
-    stop.frame = CGRectMake(130, 370, 50, 40);
-    [stop addTarget:self action:@selector(trackingStop:) forControlEvents:UIControlEventTouchUpInside];
-    [_map addSubview:stop];
+//    UIButton *test = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [test setTitle:@"Start" forState:UIControlStateNormal];
+//    test.frame = CGRectMake(270, 370, 50, 40);
+//    [test addTarget:self action:@selector(trackIngstart:) forControlEvents:UIControlEventTouchUpInside];
+//    _staAndsto = test;
+//    _start = test;
+//    [_map addSubview:_staAndsto];
+//    
+//    UIButton *stop = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [stop setTitle:@"Stop" forState:UIControlStateNormal];
+//    stop.frame = CGRectMake(130, 370, 50, 40);
+//    [stop addTarget:self action:@selector(trackingStop:) forControlEvents:UIControlEventTouchUpInside];
+//    _stop = stop;
+//    [_map addSubview:stop];
     
     _toggleBackgroundButton = [[UISwitch alloc] initWithFrame:CGRectMake(0, 10, 60, 27)];
     [_toggleBackgroundButton addTarget:self action:@selector(switchToBackgroundMode:) forControlEvents:UIControlEventValueChanged];
-    [_toggleBackgroundButton setOn:YES];
+    [_toggleBackgroundButton setOn:NO];
     [_map addSubview:_toggleBackgroundButton];
-    
-    
+
+
 
 //    UIBarButtonItem *toMain = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
 //    self.navigationItem.leftBarButtonItem = toMain;
@@ -317,6 +461,46 @@
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    
+    /*disable the tracking if user denies the access of location service*/
+    if ([CLLocationManager locationServicesEnabled]) {
+        switch ([CLLocationManager authorizationStatus]) {
+            case kCLAuthorizationStatusNotDetermined:
+                
+               // _stop.enabled = NO;
+               // _start.enabled = NO;
+                [self resignFirstResponder];
+                
+                break;
+                
+            case kCLAuthorizationStatusDenied:
+                
+              //  _stop.enabled = NO;
+               // _start.enabled = NO;
+                [self resignFirstResponder];
+                
+                break;
+                
+            case kCLAuthorizationStatusAuthorized:
+                
+               // _stop.enabled = YES;
+               // _start.enabled = YES;
+                [self becomeFirstResponder];
+                
+                break;
+                
+            case kCLAuthorizationStatusRestricted:
+                
+               // _stop.enabled = NO;
+                //_start.enabled = NO;
+                [self resignFirstResponder];
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
     
     managedObjectContext = appDelegate.context;
     //[_locationManager startUpdatingLocation];
@@ -342,6 +526,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+}
+
+-(void)viewDidUnload
+{
+    tableViewController = nil;
+    routingViewController = nil;
+    logRecordViewController = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -349,10 +541,43 @@
     [super viewWillAppear:animated];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self resignFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        if (_toggleBackgroundButton.hidden == NO) {
+            NSLog(@"shake");
+            [self performSelector:@selector(trackingStart)];
+        }else if (_toggleBackgroundButton.hidden == YES){
+        
+            NSLog(@"shake while tracking");
+            [self performSelector:@selector(trackStop)];
+        }
+    }
+}
+
+
 
 @end

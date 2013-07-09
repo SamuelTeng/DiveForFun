@@ -18,33 +18,32 @@
 @interface LogRecordViewController (){
     
     AppDelegate *delegate;
-    DIVELOG *diveLog;
-    LogViewController *logViewController;
-    //MainViewController *mainViewController;
-    LogShoViewController *logShowController;
-    RouteViewController *routeViewController;
-    NSFetchedResultsController *resultController;
-    NSArray *dateArr;
-    NSArray *latArr;
-    NSArray *lonArr;
-    NSArray *siteArr;
-    NSArray *timeArr;
-    NSArray *depthArr;
-    NSArray *airArr;
-    NSArray *staArr;
-    NSArray *endArr;
-    NSArray *visiArr;
-    NSArray *tempArr;
-    NSMutableArray *annotations;
-    NSArray *_annotations;
-    LogAnnotation *logAnnotation;
+//    DIVELOG *diveLog;
+//    LogViewController *logViewController;
+//    //MainViewController *mainViewController;
+//    LogShoViewController *logShowController;
+//    RouteViewController *routeViewController;
+//    NSFetchedResultsController *resultController;
+//    NSArray *dateArr;
+//    NSArray *latArr;
+//    NSArray *lonArr;
+//    NSArray *siteArr;
+//    NSArray *timeArr;
+//    NSArray *depthArr;
+//    NSArray *airArr;
+//    NSArray *staArr;
+//    NSArray *endArr;
+//    NSArray *visiArr;
+//    NSArray *tempArr;
+//    NSMutableArray *annotations;
+//    LogAnnotation *logAnnotation;
 }
 
 @end
 
 @implementation LogRecordViewController
 
-@synthesize logMap;
+@synthesize logMap,diveLog,logViewController,routeViewController,resultController,dateArr,latArr,lonArr,timeArr,siteArr,depthArr,airArr,staArr,endArr,visiArr,tempArr,annotations,logAnnotation;
 
 -(void)fetchData
 {
@@ -65,40 +64,43 @@
 
 -(void)lodeLog
 {
-    if (! resultController.fetchedObjects.count) {
-        NSLog(@"There is no Log at this moment");
-    }
     
-    for (DIVELOG *diveLog in resultController.fetchedObjects) {
-        dateArr = [resultController.fetchedObjects valueForKey:@"date"];
-        siteArr = [resultController.fetchedObjects valueForKey:@"site"];
-        latArr = [resultController.fetchedObjects valueForKey:@"latitude"];
-        lonArr = [resultController.fetchedObjects valueForKey:@"lontitude"];
-        timeArr = [resultController.fetchedObjects valueForKey:@"dive_time"];
-        depthArr = [resultController.fetchedObjects valueForKey:@"max_depth"];
-        airArr = [resultController.fetchedObjects valueForKey:@"gas_type"];
-        staArr = [resultController.fetchedObjects valueForKey:@"start_pressure"];
-        endArr = [resultController.fetchedObjects valueForKey:@"end_pressure"];
-        visiArr = [resultController.fetchedObjects valueForKey:@"visibility"];
-        tempArr = [resultController.fetchedObjects valueForKey:@"temperature"];
-    }
+        if (! resultController.fetchedObjects.count) {
+            NSLog(@"There is no Log at this moment");
+        }
+        
+        for (DIVELOG *diveLog in resultController.fetchedObjects) {
+            dateArr = [resultController.fetchedObjects valueForKey:@"date"];
+            siteArr = [resultController.fetchedObjects valueForKey:@"site"];
+            latArr = [resultController.fetchedObjects valueForKey:@"latitude"];
+            lonArr = [resultController.fetchedObjects valueForKey:@"lontitude"];
+            timeArr = [resultController.fetchedObjects valueForKey:@"dive_time"];
+            depthArr = [resultController.fetchedObjects valueForKey:@"max_depth"];
+            airArr = [resultController.fetchedObjects valueForKey:@"gas_type"];
+            staArr = [resultController.fetchedObjects valueForKey:@"start_pressure"];
+            endArr = [resultController.fetchedObjects valueForKey:@"end_pressure"];
+            visiArr = [resultController.fetchedObjects valueForKey:@"visibility"];
+            tempArr = [resultController.fetchedObjects valueForKey:@"temperature"];
+        }
+        
+        delegate.logDate = dateArr;
+        delegate.logSite = siteArr;
+        delegate.logLat = latArr;
+        delegate.logLon = lonArr;
+
     
-    delegate.logDate = dateArr;
-    delegate.logSite = siteArr;
-    delegate.logLat = latArr;
-    delegate.logLon = lonArr;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     /*passing data to deisred detail description viewcontroller*/
-    logShowController = [[LogShoViewController alloc] init];
+    _logShowController = [[LogShoViewController alloc] init];
     
-    logShowController.annotation_ = view.annotation;
+    _logShowController.annotation_ = view.annotation;
     
     
     /*following is the way to keep navi bar when adopting UIModalTransitionStyle into desired animation-in viewController*/
-    UINavigationController *navLogViewController = [[UINavigationController alloc] initWithRootViewController:logShowController];
+    UINavigationController *navLogViewController = [[UINavigationController alloc] initWithRootViewController:_logShowController];
     
     navLogViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:navLogViewController animated:YES completion:^{
@@ -109,43 +111,52 @@
 
 -(void)addAnnotations
 {
-    CLLocationCoordinate2D logCoordinate;
-    for (int i = 0; i < dateArr.count; i++) {
-        logAnnotation = [[LogAnnotation alloc] init];
-        CLLocationDegrees latitude = [[latArr objectAtIndex:i] doubleValue];
-        CLLocationDegrees lontitude = [[lonArr objectAtIndex:i] doubleValue];
-        logCoordinate.latitude = latitude;
-        logCoordinate.longitude = lontitude;
-        
-        logAnnotation._coordinate = logCoordinate;
-        logAnnotation._title = [NSString stringWithFormat:@"%@",[dateArr objectAtIndex:i]];
-        logAnnotation._subtitle = [NSString stringWithFormat:@"%@",[siteArr objectAtIndex:i]];
-        logAnnotation.timeOfDiving = [NSString stringWithFormat:@"%@", [timeArr objectAtIndex:i]];
-        logAnnotation.airType = [NSString stringWithFormat:@"%@",[airArr objectAtIndex:i]];
-        logAnnotation.pressureOfStart = [NSString stringWithFormat:@"%@",[staArr objectAtIndex:i]];
-        logAnnotation.pressureOfEnd = [NSString stringWithFormat:@"%@",[endArr objectAtIndex:i]];
-        logAnnotation.maxiumDepth = [NSString stringWithFormat:@"%@",[depthArr objectAtIndex:i]];
-        logAnnotation.temperature = [NSString stringWithFormat:@"%@",[tempArr objectAtIndex:i]];
-        logAnnotation.visibility = [NSString stringWithFormat:@"%@",[visiArr objectAtIndex:i]];
-        
-        [logMap addAnnotation:logAnnotation];
-        [annotations addObject:logAnnotation];
-    }
+    
+        CLLocationCoordinate2D logCoordinate;
+        for (int i = 0; i < dateArr.count; i++) {
+            logAnnotation = [[LogAnnotation alloc] init];
+            CLLocationDegrees latitude = [[latArr objectAtIndex:i] doubleValue];
+            CLLocationDegrees lontitude = [[lonArr objectAtIndex:i] doubleValue];
+            logCoordinate.latitude = latitude;
+            logCoordinate.longitude = lontitude;
+            
+            logAnnotation._coordinate = logCoordinate;
+            logAnnotation._title = [NSString stringWithFormat:@"%@",[dateArr objectAtIndex:i]];
+            logAnnotation._subtitle = [NSString stringWithFormat:@"%@",[siteArr objectAtIndex:i]];
+            logAnnotation.timeOfDiving = [NSString stringWithFormat:@"%@", [timeArr objectAtIndex:i]];
+            logAnnotation.airType = [NSString stringWithFormat:@"%@",[airArr objectAtIndex:i]];
+            logAnnotation.pressureOfStart = [NSString stringWithFormat:@"%@",[staArr objectAtIndex:i]];
+            logAnnotation.pressureOfEnd = [NSString stringWithFormat:@"%@",[endArr objectAtIndex:i]];
+            logAnnotation.maxiumDepth = [NSString stringWithFormat:@"%@",[depthArr objectAtIndex:i]];
+            logAnnotation.temperature = [NSString stringWithFormat:@"%@",[tempArr objectAtIndex:i]];
+            logAnnotation.visibility = [NSString stringWithFormat:@"%@",[visiArr objectAtIndex:i]];
+            
+                [logMap addAnnotation:logAnnotation];
+                [annotations addObject:logAnnotation];
+           
+            
 
-    /*make all annotations visible when view load*/
-    MKMapRect focus = MKMapRectNull;
-    for (logAnnotation in annotations) {
-        MKMapPoint annotationPoint = MKMapPointForCoordinate(logAnnotation.coordinate);
-        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
-        
-        if (MKMapRectIsNull(focus)) {
-            focus = pointRect;
-        }else{
-            focus = MKMapRectUnion(focus, pointRect);
         }
         
-    }
-    logMap.visibleMapRect = focus;
+        /*make all annotations visible when view load*/
+        MKMapRect focus = MKMapRectNull;
+        for (logAnnotation in annotations) {
+            MKMapPoint annotationPoint = MKMapPointForCoordinate(logAnnotation.coordinate);
+            MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+            
+            if (MKMapRectIsNull(focus)) {
+                focus = pointRect;
+            }else{
+                focus = MKMapRectUnion(focus, pointRect);
+            }
+            
+        }
+        
+            logMap.visibleMapRect = focus;
+        
+        
+
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)aAnnotation
@@ -251,9 +262,11 @@
         NSLog(@"No data at this moment");
         
     }else{
-        
-        [self lodeLog];
-        [self addAnnotations];
+       
+            [self lodeLog];
+            [self addAnnotations];
+      
+
     }
     
 
@@ -264,6 +277,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 @end

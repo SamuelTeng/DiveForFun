@@ -22,4 +22,5 @@
 @property (nonatomic,strong) NSString *temp;
 @property (nonatomic,strong) NSString *visib;
 
+
 @end

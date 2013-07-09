@@ -18,13 +18,13 @@
     AppDelegate *delegate;
     GISViewController *table;
     GISDATA *gisData;
-    NSFetchedResultsController *resultController;
-    NSArray *latArray;
-    NSArray *lonArray;
-    NSArray *pointsArray;
+//    NSFetchedResultsController *resultController;
+//    NSArray *latArray;
+//    NSArray *lonArray;
+//    NSArray *pointsArray;
     MKMapRect _routeRect;
-    NSMutableArray *annotations;
-    NSArray *_annotations;
+//    NSMutableArray *annotations;
+//    NSArray *_annotations;
 
 }
 
@@ -35,7 +35,7 @@
 @synthesize routeMap = _routeMap;
 @synthesize routeLine = _routeLine;
 @synthesize routeLineView = _routeLineView;
-@synthesize annotationsRemove;
+@synthesize annotationsRemove,resultController,latArray,lonArray,annotations,_annotations;
 
 -(void)fetchData
 {
@@ -260,6 +260,12 @@
     [self fetchData];
     
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewDidUnload
+{
+    table = nil;
+    gisData = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated

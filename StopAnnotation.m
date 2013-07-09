@@ -33,9 +33,23 @@
 -(NSString *)subtitle
 {
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSString *begin = delegate.timeGIS[0];
+    NSDateFormatter *_begin = [[NSDateFormatter alloc] init];
+    [_begin setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    NSDate *diveBegin = [_begin dateFromString:begin];
     
+    NSString *finish = [delegate.timeGIS lastObject];
+    NSDateFormatter *_finish = [[NSDateFormatter alloc] init];
+    [_finish setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    NSDate *diveFinish = [_finish dateFromString:finish];
     
-    NSString *otherInfo = [NSString stringWithFormat:@"time:%@", [delegate.timeGIS lastObject]];
+    /*timeInterValSince... is the time difference between desired date and reference date. The reference date could be 1970, now, desired date or other reference date*/
+    NSTimeInterval diveTime = [diveFinish timeIntervalSinceDate:diveBegin];
+    double minutes = diveTime/60;
+    int _minutes = floor(minutes);
+
+    NSString *otherInfo = [NSString stringWithFormat:@"dive time: %i minutes", _minutes];
+    //NSString *otherInfo = [NSString stringWithFormat:@"time:%@", diveFinish];
     return otherInfo;
 }
 

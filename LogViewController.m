@@ -13,40 +13,40 @@
 
 @interface LogViewController (){
     
-    UIScrollView *scrollView;
-    UILabel *dateLabel;
-    UILabel *siteLabel;
-    UILabel *latLabel;
-    UILabel *lonLabel;
-    UILabel *maxDepLabel;
-    UILabel *gasLabel;
-    UILabel *divetimeLabel;
-    UILabel *visiLabel;
-    UILabel *temperLabel;
-    UILabel *staPrelabel;
-    UILabel *endPreLabel;
-    UILabel *otherLabel;
-    UITextField *dateField;
-    UITextField *siteField;
-    UITextField *latField;
-    UITextField *lonField;
-    UITextField *maxDepField;
-    UITextField *gasField;
-    UITextField *divetimeField;
-    UITextField *visiField;
-    UITextField *temperField;
-    UITextField *staPreField;
-    UITextField *endPreField;
-    UITextField *otherField;
-    
-    NSString *selectedRow;
-    NSArray *gasArr;
-    NSArray *firstRow;
-    NSArray *secondRow;
-    NSArray *thirdRow;
-    NSArray *forthRow;
-    NSArray *mAndf;
-    NSArray *cAndf;
+//    UIScrollView *scrollView;
+//    UILabel *dateLabel;
+//    UILabel *siteLabel;
+//    UILabel *latLabel;
+//    UILabel *lonLabel;
+//    UILabel *maxDepLabel;
+//    UILabel *gasLabel;
+//    UILabel *divetimeLabel;
+//    UILabel *visiLabel;
+//    UILabel *temperLabel;
+//    UILabel *staPrelabel;
+//    UILabel *endPreLabel;
+//    UILabel *otherLabel;
+//    UITextField *dateField;
+//    UITextField *siteField;
+//    UITextField *latField;
+//    UITextField *lonField;
+//    UITextField *maxDepField;
+//    UITextField *gasField;
+//    UITextField *divetimeField;
+//    UITextField *visiField;
+//    UITextField *temperField;
+//    UITextField *staPreField;
+//    UITextField *endPreField;
+//    UITextField *otherField;
+//    
+//    NSString *selectedRow;
+//    NSArray *gasArr;
+//    NSArray *firstRow;
+//    NSArray *secondRow;
+//    NSArray *thirdRow;
+//    NSArray *forthRow;
+//    NSArray *mAndf;
+//    NSArray *cAndf;
     
     AppDelegate *delegate;
     LogRecordViewController *logRecordViewController;
@@ -56,7 +56,7 @@
 
 @implementation LogViewController
 
-@synthesize managedObjectContext;
+@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,latField,latLabel,lonField,lonLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel;
 
 -(void)saveToData:(id)sender
 {
@@ -99,7 +99,7 @@
 //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
    
     
-    NSString *endPressure = endPreField.text;
+    NSString *endPressure = _endPreField.text;
 //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
 //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
@@ -113,7 +113,7 @@
     visiField.text = nil;
     temperField.text = nil;
     staPreField.text = nil;
-    endPreField.text = nil; 
+    _endPreField.text = nil;
     
     DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
    
@@ -195,7 +195,7 @@
         return [gasArr count];
     }else if (pickerView.tag == 202){
         if (component == 0) {
-            return [firstRow count];
+            return [_firstRow count];
         }else if (component == 1){
             return [secondRow count];
         }else if (component == 2){
@@ -203,7 +203,7 @@
         }
     }else if (pickerView.tag == 203){
         if (component == 0) {
-            return [firstRow count];
+            return [_firstRow count];
         }else if (component == 1){
             return [secondRow count];
         }else if (component == 2){
@@ -211,32 +211,32 @@
         }
     }else if (pickerView.tag == 204){
         if (component == 0) {
-            return [firstRow count];
+            return [_firstRow count];
         }else if (component == 1){
             return [secondRow count];
         }else if (component == 2){
             return [thirdRow count];
         }else if (component == 3){
-            return [forthRow count];
+            return [_forthRow count];
         }else if (component == 4){
             return [mAndf count];
         }
 
     }else if (pickerView.tag == 205){
         if (component == 0) {
-            return [firstRow count];
+            return [_firstRow count];
         }else if (component == 1){
             return [secondRow count];
         }else if (component == 2){
             return [thirdRow count];
         }else if (component == 3){
-            return [forthRow count];
+            return [_forthRow count];
         }else if (component == 4){
-            return [cAndf count];
+            return [_cAndf count];
         }
     }else if (pickerView.tag == 206){
         if (component == 0) {
-            return [firstRow count];
+            return [_firstRow count];
         }else if (component == 1){
             return [secondRow count];
         }else if (component == 2){
@@ -256,7 +256,7 @@
         return [gasArr objectAtIndex:row];
     }else if (pickerView.tag == 202){
         if (component == 0) {
-            return [firstRow objectAtIndex:row];
+            return [_firstRow objectAtIndex:row];
         }else if (component == 1){
             return [secondRow objectAtIndex:row];
         }else if (component == 2){
@@ -264,7 +264,7 @@
         }
     }else if (pickerView.tag == 203){
         if (component == 0) {
-            return [firstRow objectAtIndex:row];
+            return [_firstRow objectAtIndex:row];
         }else if (component == 1){
             return [secondRow objectAtIndex:row];
         }else if (component == 2){
@@ -272,31 +272,31 @@
         }
     }else if (pickerView.tag == 204){
         if (component == 0) {
-            return [firstRow objectAtIndex:row];
+            return [_firstRow objectAtIndex:row];
         }else if (component == 1){
             return [secondRow objectAtIndex:row];
         }else if (component == 2){
             return [thirdRow objectAtIndex:row];
         }else if (component == 3){
-            return [forthRow objectAtIndex:row];
+            return [_forthRow objectAtIndex:row];
         }else if (component == 4){
             return [mAndf objectAtIndex:row];
         }
     }else if (pickerView.tag == 205){
         if (component == 0) {
-            return [firstRow objectAtIndex:row];
+            return [_firstRow objectAtIndex:row];
         }else if (component == 1){
             return [secondRow objectAtIndex:row];
         }else if (component == 2){
             return [thirdRow objectAtIndex:row];
         }else if (component == 3){
-            return [forthRow objectAtIndex:row];
+            return [_forthRow objectAtIndex:row];
         }else if (component == 4){
-            return [cAndf objectAtIndex:row];
+            return [_cAndf objectAtIndex:row];
         }
     }else if (pickerView.tag == 206){
         if (component == 0) {
-            return [firstRow objectAtIndex:row];
+            return [_firstRow objectAtIndex:row];
         }else if (component == 1){
             return [secondRow objectAtIndex:row];
         }else if (component == 2){
@@ -320,32 +320,32 @@
         NSInteger row1 = [pickerView selectedRowInComponent:0];
         NSInteger row2 = [pickerView selectedRowInComponent:1];
         NSInteger row3 = [pickerView selectedRowInComponent:2];
-        staPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
+        staPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
     }else if (pickerView.tag == 203){
         NSInteger row1 = [pickerView selectedRowInComponent:0];
         NSInteger row2 = [pickerView selectedRowInComponent:1];
         NSInteger row3 = [pickerView selectedRowInComponent:2];
-        endPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
+        _endPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
     }else if (pickerView.tag == 204){
         NSInteger row1 = [pickerView selectedRowInComponent:0];
         NSInteger row2 = [pickerView selectedRowInComponent:1];
         NSInteger row3 = [pickerView selectedRowInComponent:2];
         NSInteger row4 = [pickerView selectedRowInComponent:3];
         NSInteger row5 = [pickerView selectedRowInComponent:4];
-        maxDepField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[forthRow objectAtIndex:row4],[mAndf objectAtIndex:row5]];
+        maxDepField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[mAndf objectAtIndex:row5]];
     }else if (pickerView.tag == 205){
         NSInteger row1 = [pickerView selectedRowInComponent:0];
         NSInteger row2 = [pickerView selectedRowInComponent:1];
         NSInteger row3 = [pickerView selectedRowInComponent:2];
         NSInteger row4 = [pickerView selectedRowInComponent:3];
         NSInteger row5 = [pickerView selectedRowInComponent:4];
-        temperField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[forthRow objectAtIndex:row4],[cAndf objectAtIndex:row5]];
+        temperField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[_cAndf objectAtIndex:row5]];
     }else if (pickerView.tag == 206){
         NSInteger row1 = [pickerView selectedRowInComponent:0];
         NSInteger row2 = [pickerView selectedRowInComponent:1];
         NSInteger row3 = [pickerView selectedRowInComponent:2];
         NSInteger row4 = [pickerView selectedRowInComponent:3];
-        visiField.text = [NSString stringWithFormat:@"%@%@%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
+        visiField.text = [NSString stringWithFormat:@"%@%@%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
     }
     
     
@@ -420,7 +420,7 @@
         NSInteger row1 = [staPre selectedRowInComponent:0];
         NSInteger row2 = [staPre selectedRowInComponent:1];
         NSInteger row3 = [staPre selectedRowInComponent:2];
-        aTextField.text = [NSString stringWithFormat:@"%@ %@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
+        aTextField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
         
         UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
@@ -440,7 +440,7 @@
         NSInteger row1 = [endPre selectedRowInComponent:0];
         NSInteger row2 = [endPre selectedRowInComponent:1];
         NSInteger row3 = [endPre selectedRowInComponent:2];
-        aTextField.text = [NSString stringWithFormat:@"%@ %@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
+        aTextField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
         
         UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
@@ -462,7 +462,7 @@
         NSInteger row3 = [maxD selectedRowInComponent:2];
         NSInteger row4 = [maxD selectedRowInComponent:3];
         NSInteger row5 = [maxD selectedRowInComponent:4];
-        aTextField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[forthRow objectAtIndex:row4],[mAndf objectAtIndex:row5]];
+        aTextField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[mAndf objectAtIndex:row5]];
         
         UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
@@ -483,7 +483,7 @@
         NSInteger row3 = [temp selectedRowInComponent:2];
         NSInteger row4 = [temp selectedRowInComponent:3];
         NSInteger row5 = [temp selectedRowInComponent:4];
-        aTextField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[forthRow objectAtIndex:row4],[cAndf objectAtIndex:row5]];
+        aTextField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[_cAndf objectAtIndex:row5]];
         
         UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
@@ -503,7 +503,7 @@
         NSInteger row2 = [visi selectedRowInComponent:1];
         NSInteger row3 = [visi selectedRowInComponent:2];
         NSInteger row4 = [visi selectedRowInComponent:3];
-        aTextField.text = [NSString stringWithFormat:@"%@%@%@ %@",[firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
+        aTextField.text = [NSString stringWithFormat:@"%@%@%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
         
         UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
@@ -521,7 +521,7 @@
 {
     if ((dateField.text.length > 0) && (latField.text.length > 0) && (lonField.text.length > 0)
         && (gasField.text.length > 0) && (staPreField.text.length > 0) &&
-        (endPreField.text.length > 0) && (maxDepField.text.length > 0) && (divetimeField.text.length >0) && (temperField.text.length > 0) && (visiField.text.length > 0)) {
+        (_endPreField.text.length > 0) && (maxDepField.text.length > 0) && (divetimeField.text.length >0) && (temperField.text.length > 0) && (visiField.text.length > 0)) {
                self.navigationItem.rightBarButtonItem.enabled = YES;
             }
             else{
@@ -620,18 +620,18 @@
     staPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:staPreField];
     
-    endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 494, 200, 21)];
-    [endPreLabel setText:@"End Pressure"];
-    [scrollView addSubview:endPreLabel];
+    _endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 494, 200, 21)];
+    [_endPreLabel setText:@"End Pressure"];
+    [scrollView addSubview:_endPreLabel];
     
-    endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
-    [endPreField setTag:107];
-    endPreField.delegate = self;
-    endPreField.placeholder = @"60 bar";
-    endPreField.borderStyle = UITextBorderStyleRoundedRect;
-    endPreField.adjustsFontSizeToFitWidth = YES;
-    endPreField.textAlignment = NSTextAlignmentCenter;
-    [scrollView addSubview:endPreField];
+    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
+    [_endPreField setTag:107];
+    _endPreField.delegate = self;
+    _endPreField.placeholder = @"60 bar";
+    _endPreField.borderStyle = UITextBorderStyleRoundedRect;
+    _endPreField.adjustsFontSizeToFitWidth = YES;
+    _endPreField.textAlignment = NSTextAlignmentCenter;
+    [scrollView addSubview:_endPreField];
     
     maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
     [maxDepLabel setText:@"Max Depth"];
@@ -694,12 +694,12 @@
     [self textAndLabel];
     
     gasArr = [NSArray arrayWithObjects:@"Normal Air",@"Nitrox",@"Closed Circuit",@"Surface Supplied", nil];
-    firstRow = [NSArray arrayWithObjects:@" ",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
+    _firstRow = [NSArray arrayWithObjects:@" ",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     secondRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     thirdRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
-    forthRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
+    _forthRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     mAndf = [NSArray arrayWithObjects:@"m",@"ft", nil];
-    cAndf = [NSArray arrayWithObjects:@"°C",@"°F", nil];
+    _cAndf = [NSArray arrayWithObjects:@"°C",@"°F", nil];
     
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToData:)];
     self.navigationItem.rightBarButtonItem = save;
