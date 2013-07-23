@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5750B9421783BDB8000583AD /* LogRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9411783BDB8000583AD /* LogRecordViewController.m */; };
 		5750B9451783BF3B000583AD /* LogAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9441783BF3B000583AD /* LogAnnotation.m */; };
+		5753D7431794CF6B00D074A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7401794CF6B00D074A2 /* Default-568h@2x.png */; };
+		5753D7441794CF6B00D074A2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7411794CF6B00D074A2 /* Default@2x.png */; };
+		5753D7451794CF6B00D074A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7421794CF6B00D074A2 /* Default.png */; };
 		5754376117850D100025E837 /* LogShoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5754376017850D100025E837 /* LogShoViewController.m */; };
 		57558DE51773D46700E982BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE41773D46700E982BF /* UIKit.framework */; };
 		57558DE71773D46700E982BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE61773D46700E982BF /* Foundation.framework */; };
@@ -16,9 +19,6 @@
 		57558DEF1773D46700E982BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57558DED1773D46700E982BF /* InfoPlist.strings */; };
 		57558DF11773D46700E982BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558DF01773D46700E982BF /* main.m */; };
 		57558DF51773D46700E982BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558DF41773D46700E982BF /* AppDelegate.m */; };
-		57558DF71773D46700E982BF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57558DF61773D46700E982BF /* Default.png */; };
-		57558DF91773D46700E982BF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57558DF81773D46700E982BF /* Default@2x.png */; };
-		57558DFB1773D46700E982BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57558DFA1773D46700E982BF /* Default-568h@2x.png */; };
 		57558E031773D46700E982BF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558E021773D46700E982BF /* SenTestingKit.framework */; };
 		57558E041773D46700E982BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE41773D46700E982BF /* UIKit.framework */; };
 		57558E051773D46700E982BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57558DE61773D46700E982BF /* Foundation.framework */; };
@@ -34,6 +34,8 @@
 		57558E32177409CB00E982BF /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E31177409CB00E982BF /* RouteViewController.m */; };
 		57558E351774182100E982BF /* CrumbPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E341774182100E982BF /* CrumbPath.m */; };
 		57558E381774185300E982BF /* CrumbPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E371774185300E982BF /* CrumbPathView.m */; };
+		57559CD71798E76D000540E1 /* App_Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 57559CD31798E76D000540E1 /* App_Icon57.png */; };
+		57559CD81798E76D000540E1 /* App_Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 57559CD41798E76D000540E1 /* App_Icon114.png */; };
 		5761664A1777E3FD00798728 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576166491777E3FD00798728 /* LogViewController.m */; };
 		57CE958C177421D100A9DF2A /* GISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958B177421D100A9DF2A /* GISViewController.m */; };
 		57CE958F1774220800A9DF2A /* RoutingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958E1774220800A9DF2A /* RoutingViewController.m */; };
@@ -56,6 +58,9 @@
 		5750B9411783BDB8000583AD /* LogRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRecordViewController.m; sourceTree = "<group>"; };
 		5750B9431783BF3B000583AD /* LogAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogAnnotation.h; sourceTree = "<group>"; };
 		5750B9441783BF3B000583AD /* LogAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogAnnotation.m; sourceTree = "<group>"; };
+		5753D7401794CF6B00D074A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5753D7411794CF6B00D074A2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5753D7421794CF6B00D074A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5754375F17850D100025E837 /* LogShoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogShoViewController.h; path = ../LogShoViewController.h; sourceTree = "<group>"; };
 		5754376017850D100025E837 /* LogShoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogShoViewController.m; path = ../LogShoViewController.m; sourceTree = "<group>"; };
 		57558DE11773D46700E982BF /* DiveForFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiveForFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,9 +73,6 @@
 		57558DF21773D46700E982BF /* DiveForFun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiveForFun-Prefix.pch"; sourceTree = "<group>"; };
 		57558DF31773D46700E982BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57558DF41773D46700E982BF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		57558DF61773D46700E982BF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		57558DF81773D46700E982BF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		57558DFA1773D46700E982BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		57558E011773D46700E982BF /* DiveForFunTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiveForFunTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57558E021773D46700E982BF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		57558E0A1773D46700E982BF /* DiveForFunTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiveForFunTests-Info.plist"; sourceTree = "<group>"; };
@@ -92,6 +94,8 @@
 		57558E341774182100E982BF /* CrumbPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPath.m; path = ../CrumbPath.m; sourceTree = "<group>"; };
 		57558E361774185300E982BF /* CrumbPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrumbPathView.h; path = ../CrumbPathView.h; sourceTree = "<group>"; };
 		57558E371774185300E982BF /* CrumbPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPathView.m; path = ../CrumbPathView.m; sourceTree = "<group>"; };
+		57559CD31798E76D000540E1 /* App_Icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App_Icon57.png; path = ../App_Icon57.png; sourceTree = "<group>"; };
+		57559CD41798E76D000540E1 /* App_Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App_Icon114.png; path = ../App_Icon114.png; sourceTree = "<group>"; };
 		576166481777E3FD00798728 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogViewController.h; path = ../LogViewController.h; sourceTree = "<group>"; };
 		576166491777E3FD00798728 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogViewController.m; path = ../LogViewController.m; sourceTree = "<group>"; };
 		57CE958A177421D100A9DF2A /* GISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GISViewController.h; path = ../GISViewController.h; sourceTree = "<group>"; };
@@ -196,13 +200,15 @@
 		57558DEB1773D46700E982BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57559CD31798E76D000540E1 /* App_Icon57.png */,
+				57559CD41798E76D000540E1 /* App_Icon114.png */,
+				5753D7401794CF6B00D074A2 /* Default-568h@2x.png */,
+				5753D7411794CF6B00D074A2 /* Default@2x.png */,
+				5753D7421794CF6B00D074A2 /* Default.png */,
 				57558DEC1773D46700E982BF /* DiveForFun-Info.plist */,
 				57558DED1773D46700E982BF /* InfoPlist.strings */,
 				57558DF01773D46700E982BF /* main.m */,
 				57558DF21773D46700E982BF /* DiveForFun-Prefix.pch */,
-				57558DF61773D46700E982BF /* Default.png */,
-				57558DF81773D46700E982BF /* Default@2x.png */,
-				57558DFA1773D46700E982BF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -323,10 +329,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				57558DEF1773D46700E982BF /* InfoPlist.strings in Resources */,
-				57558DF71773D46700E982BF /* Default.png in Resources */,
-				57558DF91773D46700E982BF /* Default@2x.png in Resources */,
-				57558DFB1773D46700E982BF /* Default-568h@2x.png in Resources */,
 				57558E231773E35300E982BF /* View.xib in Resources */,
+				5753D7431794CF6B00D074A2 /* Default-568h@2x.png in Resources */,
+				5753D7441794CF6B00D074A2 /* Default@2x.png in Resources */,
+				5753D7451794CF6B00D074A2 /* Default.png in Resources */,
+				57559CD71798E76D000540E1 /* App_Icon57.png in Resources */,
+				57559CD81798E76D000540E1 /* App_Icon114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

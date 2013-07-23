@@ -30,14 +30,11 @@
     return @"Start Here";
 }
 
-//-(NSString *)subtitle
-//{
-//    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-//    float diveTimeBegin = [delegate.timeGIS[0] floatValue];
-//    
-//    //NSString *otherInfo = [NSString stringWithFormat:@"time:%@", [delegate.timeGIS objectAtIndex:0]];
-//    NSString *otherInfo = [NSString stringWithFormat:@"time:%f", diveTimeBegin];
-//    return otherInfo;
-//}
+-(NSString *)subtitle
+{
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    NSString *coordinate = [NSString stringWithFormat:@"Latitude: %@ \n Lontitude: %@",delegate.latGIS[0],delegate.lonGIS[0]];
+    return coordinate;
+}
 
 @end

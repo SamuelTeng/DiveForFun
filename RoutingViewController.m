@@ -281,6 +281,8 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    table = nil;
+    gisData = nil;
 }
 
 @end

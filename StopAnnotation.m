@@ -35,6 +35,7 @@
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     NSString *begin = delegate.timeGIS[0];
     NSDateFormatter *_begin = [[NSDateFormatter alloc] init];
+    /*the original data from array is 2013-07-09 14:58:18 +0000. hence, the formatter must transfer all number into date otherwise it will return null*/
     [_begin setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
     NSDate *diveBegin = [_begin dateFromString:begin];
     
