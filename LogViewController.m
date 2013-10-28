@@ -10,6 +10,10 @@
 #import "DIVELOG.h"
 #import "AppDelegate.h"
 #import "LogRecordViewController.h"
+//#import "LogOptionsViewController.h"
+#import "GISViewController.h"
+#import "PhotoViewController.h"
+#import "SignatureViewController.h"
 
 @interface LogViewController (){
     
@@ -50,73 +54,81 @@
     
     AppDelegate *delegate;
     LogRecordViewController *logRecordViewController;
+    //LogOptionsViewController *logOptionsViewController;
+    GISViewController *gisViewController;
+    PhotoViewController *photoViewController;
+    SignatureViewController *signatureViewController;
+    
 }
+
 
 @end
 
 @implementation LogViewController
 
-@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,latField,latLabel,lonField,lonLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel;
+@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,latField,latLabel,lonField,lonLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,latFromData,lonFromData,timeFromData,selectedImagePresent,signaturePresent;
+
 
 -(void)saveToData:(id)sender
 {
-    NSString *dateStr = dateField.text;
-    NSLog(@"%@",dateStr);
-    
-    
-    NSString *site = siteField.text;
-    
-
-  
-    NSString *latitude = latField.text;
-    
+    if (selectedImagePresent.image == nil && signaturePresent.image == nil) {
+        NSString *dateStr = dateField.text;
+        NSLog(@"%@",dateStr);
         
-    NSString *lontitude= lonField.text;
-    
-
         
-    NSString *maxDepth = maxDepField.text;
-    
-    
-    NSString *gasType = gasField.text;
-    
-    
-    NSString *diveTime = divetimeField.text;
-    NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-    [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-    
-    
-    NSString *visibility = visiField.text;
-    
-    
-    NSString *temperature = temperField.text;
-   
-    
-    NSString *startPressure = staPreField.text;
-//    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-//    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-//    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-   
-    
-    NSString *endPressure = _endPreField.text;
-//    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-//    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-//    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-    dateField.text = nil;
-    siteField.text = nil;
-    latField.text = nil;
-    lonField.text = nil;
-    maxDepField.text = nil;
-    gasField.text = nil;
-    divetimeField.text = nil;
-    visiField.text = nil;
-    temperField.text = nil;
-    staPreField.text = nil;
-    _endPreField.text = nil;
-    
-    DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
-   
+        NSString *site = siteField.text;
+        
+        
+        
+        NSString *latitude = latField.text;
+        
+        
+        NSString *lontitude= lonField.text;
+        
+        
+        
+        NSString *maxDepth = maxDepField.text;
+        
+        
+        NSString *gasType = gasField.text;
+        
+        
+        NSString *diveTime = divetimeField.text;
+        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+        
+        
+        NSString *visibility = visiField.text;
+        
+        
+        NSString *temperature = temperField.text;
+        
+        
+        NSString *startPressure = staPreField.text;
+        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+        
+        
+        NSString *endPressure = _endPreField.text;
+        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+        dateField.text = nil;
+        siteField.text = nil;
+        latField.text = nil;
+        lonField.text = nil;
+        maxDepField.text = nil;
+        gasField.text = nil;
+        divetimeField.text = nil;
+        visiField.text = nil;
+        temperField.text = nil;
+        staPreField.text = nil;
+        _endPreField.text = nil;
+        
+        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
+        
         database.date = dateStr;
         database.site = site;
         database.latitude = latitude;
@@ -128,18 +140,288 @@
         database.temperature = temperature;
         database.start_pressure = startPressure;
         database.end_pressure = endPressure;
-    
-
+        
+        
         
         NSError *error;
         if (![managedObjectContext save:&error]) {
             NSLog(@"error:%@", [error localizedFailureReason]);
         }
         
+       
         
-        [delegate.navi pushViewController:logRecordViewController animated:YES];
+        //[delegate.navi pushViewController:logRecordViewController animated:YES];
+        [delegate.navi pushViewController:gisViewController animated:YES];
 
+    }else if(signaturePresent.image == nil){
+        
+        NSString *dateStr = dateField.text;
+        NSLog(@"%@",dateStr);
+        
+        
+        NSString *site = siteField.text;
+        
+        
+        
+        NSString *latitude = latField.text;
+        
+        
+        NSString *lontitude= lonField.text;
+        
+        
+        
+        NSString *maxDepth = maxDepField.text;
+        
+        
+        NSString *gasType = gasField.text;
+        
+        
+        NSString *diveTime = divetimeField.text;
+        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+        
+        
+        NSString *visibility = visiField.text;
+        
+        
+        NSString *temperature = temperField.text;
+        
+        
+        NSString *startPressure = staPreField.text;
+        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+        
+        
+        NSString *endPressure = _endPreField.text;
+        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+        
+        NSData *imgData = [NSData dataWithData:UIImagePNGRepresentation(selectedImagePresent.image)];
+        
+        dateField.text = nil;
+        siteField.text = nil;
+        latField.text = nil;
+        lonField.text = nil;
+        maxDepField.text = nil;
+        gasField.text = nil;
+        divetimeField.text = nil;
+        visiField.text = nil;
+        temperField.text = nil;
+        staPreField.text = nil;
+        _endPreField.text = nil;
+        selectedImagePresent.image = nil;
+        delegate.selectedCellImage = nil;
+
+        
+        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
+        
+        database.date = dateStr;
+        database.site = site;
+        database.latitude = latitude;
+        database.lontitude = lontitude;
+        database.max_depth = maxDepth;
+        database.gas_type = gasType;
+        database.dive_time = _diveTime;
+        database.visibility = visibility;
+        database.temperature = temperature;
+        database.start_pressure = startPressure;
+        database.end_pressure = endPressure;
+        database.others = imgData;
+        
+        
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"error:%@", [error localizedFailureReason]);
+        }
+        
+        NSLog(@"image selected");
+        
+        //[delegate.navi pushViewController:logRecordViewController animated:YES];
+        [delegate.navi pushViewController:gisViewController animated:YES];
+        
+    }else if (selectedImagePresent.image == nil){
+        NSString *dateStr = dateField.text;
+        NSLog(@"%@",dateStr);
+        
+        
+        NSString *site = siteField.text;
+        
+        
+        
+        NSString *latitude = latField.text;
+        
+        
+        NSString *lontitude= lonField.text;
+        
+        
+        
+        NSString *maxDepth = maxDepField.text;
+        
+        
+        NSString *gasType = gasField.text;
+        
+        
+        NSString *diveTime = divetimeField.text;
+        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+        
+        
+        NSString *visibility = visiField.text;
+        
+        
+        NSString *temperature = temperField.text;
+        
+        
+        NSString *startPressure = staPreField.text;
+        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+        
+        
+        NSString *endPressure = _endPreField.text;
+        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+        
+        NSData *signData = [NSData dataWithData:UIImagePNGRepresentation(signaturePresent.image)];
+        
+        dateField.text = nil;
+        siteField.text = nil;
+        latField.text = nil;
+        lonField.text = nil;
+        maxDepField.text = nil;
+        gasField.text = nil;
+        divetimeField.text = nil;
+        visiField.text = nil;
+        temperField.text = nil;
+        staPreField.text = nil;
+        _endPreField.text = nil;
+        signaturePresent.image = nil;
+        delegate.signatureImage = nil;
+        
+        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
+        
+        database.date = dateStr;
+        database.site = site;
+        database.latitude = latitude;
+        database.lontitude = lontitude;
+        database.max_depth = maxDepth;
+        database.gas_type = gasType;
+        database.dive_time = _diveTime;
+        database.visibility = visibility;
+        database.temperature = temperature;
+        database.start_pressure = startPressure;
+        database.end_pressure = endPressure;
+        database.signature = signData;
+        
+        
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"error:%@", [error localizedFailureReason]);
+        }
+        
+        NSLog(@"sign");
+        
+        //[delegate.navi pushViewController:logRecordViewController animated:YES];
+        [delegate.navi pushViewController:gisViewController animated:YES];
+    }else{
+        
+        NSString *dateStr = dateField.text;
+        NSLog(@"%@",dateStr);
+        
+        
+        NSString *site = siteField.text;
+        
+        
+        
+        NSString *latitude = latField.text;
+        
+        
+        NSString *lontitude= lonField.text;
+        
+        
+        
+        NSString *maxDepth = maxDepField.text;
+        
+        
+        NSString *gasType = gasField.text;
+        
+        
+        NSString *diveTime = divetimeField.text;
+        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+        
+        
+        NSString *visibility = visiField.text;
+        
+        
+        NSString *temperature = temperField.text;
+        
+        
+        NSString *startPressure = staPreField.text;
+        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+        
+        
+        NSString *endPressure = _endPreField.text;
+        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+        NSData *imgData = [NSData dataWithData:UIImagePNGRepresentation(selectedImagePresent.image)];
+        NSData *signData = [NSData dataWithData:UIImagePNGRepresentation(signaturePresent.image)];
+        
+        dateField.text = nil;
+        siteField.text = nil;
+        latField.text = nil;
+        lonField.text = nil;
+        maxDepField.text = nil;
+        gasField.text = nil;
+        divetimeField.text = nil;
+        visiField.text = nil;
+        temperField.text = nil;
+        staPreField.text = nil;
+        _endPreField.text = nil;
+        selectedImagePresent.image = nil;
+        delegate.selectedCellImage = nil;
+        signaturePresent.image = nil;
+        delegate.signatureImage = nil;
+        
+        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
+        
+        database.date = dateStr;
+        database.site = site;
+        database.latitude = latitude;
+        database.lontitude = lontitude;
+        database.max_depth = maxDepth;
+        database.gas_type = gasType;
+        database.dive_time = _diveTime;
+        database.visibility = visibility;
+        database.temperature = temperature;
+        database.start_pressure = startPressure;
+        database.end_pressure = endPressure;
+        database.others = imgData;
+        database.signature = signData;
+        
+        
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"error:%@", [error localizedFailureReason]);
+        }
+        
+        NSLog(@"image selected and sign");
+        
+        //[delegate.navi pushViewController:logRecordViewController animated:YES];
+        [delegate.navi pushViewController:gisViewController animated:YES];
     }
+    
+    
+}
             
 
     
@@ -527,6 +809,7 @@
             else{
         
                 self.navigationItem.rightBarButtonItem.enabled = NO;
+                
             }
 
 }
@@ -550,7 +833,7 @@
 -(void)textAndLabel
 {
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
-    [dateLabel setText:@"Date"];
+    [dateLabel setText:@"日期"];
     [scrollView addSubview:dateLabel];
     
     dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 85, 97, 30)];
@@ -562,7 +845,7 @@
     [scrollView addSubview:dateField];
     
     siteLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 154, 80, 21)];
-    [siteLabel setText:@"Site"];
+    [siteLabel setText:@"潛點"];
     [scrollView addSubview:siteLabel];
     
     siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 151, 97, 30)];
@@ -573,8 +856,8 @@
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
-    latLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 220, 100, 21)];
-    [latLabel setText:@"Latitude"];
+    latLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
+    [latLabel setText:@"經度"];
     [scrollView addSubview:latLabel];
     
     latField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
@@ -584,8 +867,8 @@
     latField.borderStyle = UITextBorderStyleRoundedRect;
     [scrollView addSubview:latField];
     
-    lonLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 286, 100, 21)];
-    [lonLabel setText:@"Lontitude"];
+    lonLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
+    [lonLabel setText:@"緯度"];
     [scrollView addSubview:lonLabel];
     
     lonField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
@@ -595,8 +878,8 @@
     lonField.borderStyle = UITextBorderStyleRoundedRect;
     [scrollView addSubview:lonField];
     
-    gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 352, 100, 21)];
-    [gasLabel setText:@" Gas Type"];
+    gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
+    [gasLabel setText:@"氣源"];
     [scrollView addSubview:gasLabel];
     
     gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 349, 97, 30)];
@@ -634,7 +917,7 @@
     [scrollView addSubview:_endPreField];
     
     maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
-    [maxDepLabel setText:@"Max Depth"];
+    [maxDepLabel setText:@"最大深度"];
     [scrollView addSubview:maxDepLabel];
     
     maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 557, 97, 30)];
@@ -647,7 +930,7 @@
     [scrollView addSubview:maxDepField];
     
     divetimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 626, 100, 21)];
-    [divetimeLabel setText:@"Dive Time"];
+    [divetimeLabel setText:@"潛水時間"];
     [scrollView addSubview:divetimeLabel];
     
     divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 623, 97, 30)];
@@ -656,10 +939,11 @@
     divetimeField.placeholder = @"in minutes";
     divetimeField.borderStyle = UITextBorderStyleRoundedRect;
     divetimeField.adjustsFontSizeToFitWidth = YES;
+    divetimeField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:divetimeField];
     
-    temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 692, 100, 21)];
-    [temperLabel setText:@"Temperture"];
+    temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 692, 100, 21)];
+    [temperLabel setText:@"水溫"];
     [scrollView addSubview:temperLabel];
     
     temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 689, 97, 30)];
@@ -670,8 +954,8 @@
     temperField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:temperField];
     
-    visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 758, 100, 21)];
-    [visiLabel setText:@"Visibility"];
+    visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 758, 100, 21)];
+    [visiLabel setText:@"能見度"];
     [scrollView addSubview:visiLabel];
     
     visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 755, 97, 30)];
@@ -681,14 +965,38 @@
     visiField.borderStyle = UITextBorderStyleRoundedRect;
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
+    
 
+
+}
+
+//-(void)loadFromGIS:(id)sender
+//{
+//    UINavigationController *toTable = [[UINavigationController alloc] initWithRootViewController:logOptionsViewController];
+//    toTable.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self presentViewController:toTable animated:YES completion:^{
+//        NULL;
+//        
+//    }];
+//
+//}
+
+-(void)loadPhoto:(id)sender
+{
+    
+    [delegate.navi pushViewController:photoViewController animated:YES];
+}
+
+-(void)partnerSingnature:(id)sender
+{
+    [delegate.navi pushViewController:signatureViewController animated:YES];
 }
 
 -(void)loadView
 {
     [super loadView];
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1000);
+    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1500);
     [self.view addSubview:scrollView];
     
     [self textAndLabel];
@@ -705,21 +1013,88 @@
     self.navigationItem.rightBarButtonItem = save;
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
+    UIButton *load = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [load setTitle:@"Load" forState:UIControlStateNormal];
+    load.frame = CGRectMake(scrollView.center.x-25, 810, 50, 40);
+    [load addTarget:self action:@selector(loadPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:load];
+    
+    UIButton *singnature = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [singnature setTitle:@"潛伴簽名" forState:UIControlStateNormal];
+    singnature.frame = CGRectMake(scrollView.center.x-50, selectedImagePresent.frame.origin.y+1070, 100, 50);
+    [singnature addTarget:self action:@selector(partnerSingnature:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:singnature];
+    
     delegate = [[UIApplication sharedApplication] delegate];
     managedObjectContext = delegate.context;
     
     logRecordViewController = [[LogRecordViewController alloc] init];
-    
+//    logOptionsViewController = [[LogOptionsViewController alloc] init];
+//    logOptionsViewController.delegate = self;
+    gisViewController = [[GISViewController alloc] init];
+    photoViewController = [[PhotoViewController alloc] init];
+    signatureViewController = [[SignatureViewController alloc] init];
 //    UIBarButtonItem *toLogRecord = [[UIBarButtonItem alloc] initWithTitle:@"Log" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogRecord:)];
 //    NSArray *barButtonArr = [NSArray arrayWithObjects:save,toLogRecord, nil];
     //self.navigationItem.rightBarButtonItems = barButtonArr;
     //self.navigationItem.hidesBackButton = YES;
 }
 
+
+//-(void)didSelectDate:(NSString *)aCellData latitude:(NSString *)bCellData lontitude:(NSString *)cCellData time:(NSString *)dCelldata
+//{
+//    /*first, establish a class that contain data from database and display in table; second, insert the table into alertview, then set up alert view in tableview class and assign it to another alrtview which establish in this class; third, build a delegate protocal in table view class so that it can contain and pass value to this class; finally, use the method that create in table class delegate to pass the text value to this class's textfield*/
+//    
+//    dateFromData = aCellData;
+//    latFromData = bCellData;
+//    lonFromData = cCellData;
+//    timeFromData = dCelldata;
+//    
+//    dateField.text = dateFromData;
+//    latField.text = latFromData;
+//    lonField.text = lonFromData;
+//    divetimeField.text = timeFromData ;
+//}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self presentSelectImage];
+    [self presentSignature];
+    
+
+
+}
+
+-(void)presentSelectImage
+{
+    selectedImagePresent = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.center.x-100, 864, 200, 200)];
+    selectedImagePresent.image =//[UIImage imageNamed:[delegate.selectedDictionary objectForKey:@"AlAssetPropertyURLs"]];
+    delegate.selectedCellImage;
+    [scrollView addSubview:selectedImagePresent];
+}
+
+-(void)presentSignature
+{
+    signaturePresent = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.center.x-200, 1080, 400, 300)];
+    if (delegate.signatureImage == nil) {
+        NSLog(@"no image");
+    }
+    signaturePresent.image = delegate.signatureImage;
+    [scrollView addSubview:signaturePresent];
+}
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

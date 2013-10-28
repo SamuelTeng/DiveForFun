@@ -21,6 +21,7 @@
 @property (nonatomic,strong) NSString *maxDep;
 @property (nonatomic,strong) NSString *temp;
 @property (nonatomic,strong) NSString *visib;
-
-
+@property (nonatomic,strong) NSData *img;
+@property (nonatomic,strong) NSData *sign;
+@property (nonatomic,strong) UIScrollView *logShowView;
 @end

@@ -91,11 +91,11 @@
 -(void)reloadData
 {
     
-    appDelegate.latGIS = latitudeArray;
-    appDelegate.lonGIS = lontitudeArray;
-    appDelegate.timeGIS = timestampArry;
-    appDelegate.courseGIS = courseArray;
-    appDelegate.altGIS = altitudeArray;
+//    appDelegate.latGIS = latitudeArray;
+//    appDelegate.lonGIS = lontitudeArray;
+//    appDelegate.timeGIS = timestampArry;
+//    appDelegate.courseGIS = courseArray;
+//    appDelegate.altGIS = altitudeArray;
     [appDelegate.navi pushViewController:routingViewController animated:YES];
     
     //[appDelegate.navi pushViewController:dataViewController animated:NO];
@@ -422,7 +422,8 @@
     logRecordViewController = [[LogRecordViewController alloc] init];
     
     _map = [[MKMapView alloc] initWithFrame:appDelegate.window.frame];
-    
+    _map.showsUserLocation = YES;
+    _map.userTrackingMode = YES;
     _map.delegate = self;
     [self.view addSubview:_map];
     
@@ -443,7 +444,7 @@
     
     _toggleBackgroundButton = [[UISwitch alloc] initWithFrame:CGRectMake(0, 10, 60, 27)];
     [_toggleBackgroundButton addTarget:self action:@selector(switchToBackgroundMode:) forControlEvents:UIControlEventValueChanged];
-    [_toggleBackgroundButton setOn:NO];
+    [_toggleBackgroundButton setOn:YES];
     [_map addSubview:_toggleBackgroundButton];
 
 
@@ -485,6 +486,7 @@
                 
                // _stop.enabled = YES;
                // _start.enabled = YES;
+                
                 [self becomeFirstResponder];
                 
                 break;
@@ -539,6 +541,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self zoomToCurrentLocation];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -561,6 +565,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    self.locationManager.delegate = nil;
+    tableViewController = nil;
+    routingViewController = nil;
+    logRecordViewController = nil;
     // Dispose of any resources that can be recreated.
 }
 
@@ -578,6 +586,12 @@
     }
 }
 
-
+-(void)zoomToCurrentLocation
+{
+    CLLocation *currentLocation = _map.userLocation.location;
+    MKCoordinateRegion visibleRegion = MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 400, 400);
+    MKCoordinateRegion adjustedRegion = [_map regionThatFits:visibleRegion];
+    [_map setRegion:adjustedRegion animated:YES];
+}
 
 @end

@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5750B430179F5CAC0080B342 /* App_Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5750B42F179F5CAC0080B342 /* App_Icon114.png */; };
+		5750B432179F5CBB0080B342 /* App_Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5750B431179F5CBB0080B342 /* App_Icon57.png */; };
 		5750B9421783BDB8000583AD /* LogRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9411783BDB8000583AD /* LogRecordViewController.m */; };
 		5750B9451783BF3B000583AD /* LogAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5750B9441783BF3B000583AD /* LogAnnotation.m */; };
+		5751904517F3D194007D2D7B /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5751904417F3D194007D2D7B /* PhotoViewController.m */; };
+		5752CCF717C6F58900AAA1CA /* LogOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5752CCF617C6F58900AAA1CA /* LogOptionsViewController.m */; };
 		5753D7431794CF6B00D074A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7401794CF6B00D074A2 /* Default-568h@2x.png */; };
 		5753D7441794CF6B00D074A2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7411794CF6B00D074A2 /* Default@2x.png */; };
 		5753D7451794CF6B00D074A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5753D7421794CF6B00D074A2 /* Default.png */; };
@@ -34,9 +38,10 @@
 		57558E32177409CB00E982BF /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E31177409CB00E982BF /* RouteViewController.m */; };
 		57558E351774182100E982BF /* CrumbPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E341774182100E982BF /* CrumbPath.m */; };
 		57558E381774185300E982BF /* CrumbPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57558E371774185300E982BF /* CrumbPathView.m */; };
-		57559CD71798E76D000540E1 /* App_Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 57559CD31798E76D000540E1 /* App_Icon57.png */; };
-		57559CD81798E76D000540E1 /* App_Icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 57559CD41798E76D000540E1 /* App_Icon114.png */; };
+		5756289518079C01000E0A36 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5756289418079C01000E0A36 /* SignatureViewController.m */; };
+		575C523417F9110F003ADDB7 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 575C523317F9110F003ADDB7 /* PhotoCell.m */; };
 		5761664A1777E3FD00798728 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 576166491777E3FD00798728 /* LogViewController.m */; };
+		57623EBC17F425AC005ABC8B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57623EBB17F425AC005ABC8B /* AssetsLibrary.framework */; };
 		57CE958C177421D100A9DF2A /* GISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958B177421D100A9DF2A /* GISViewController.m */; };
 		57CE958F1774220800A9DF2A /* RoutingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE958E1774220800A9DF2A /* RoutingViewController.m */; };
 		57CE9592177427C100A9DF2A /* StartAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CE9591177427C100A9DF2A /* StartAnnotation.m */; };
@@ -54,10 +59,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5750B42F179F5CAC0080B342 /* App_Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_Icon114.png; sourceTree = "<group>"; };
+		5750B431179F5CBB0080B342 /* App_Icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_Icon57.png; sourceTree = "<group>"; };
 		5750B9401783BDB8000583AD /* LogRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRecordViewController.h; sourceTree = "<group>"; };
 		5750B9411783BDB8000583AD /* LogRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRecordViewController.m; sourceTree = "<group>"; };
 		5750B9431783BF3B000583AD /* LogAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogAnnotation.h; sourceTree = "<group>"; };
 		5750B9441783BF3B000583AD /* LogAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogAnnotation.m; sourceTree = "<group>"; };
+		5751904317F3D194007D2D7B /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoViewController.h; path = ../PhotoViewController.h; sourceTree = "<group>"; };
+		5751904417F3D194007D2D7B /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoViewController.m; path = ../PhotoViewController.m; sourceTree = "<group>"; };
+		5752CCF517C6F58900AAA1CA /* LogOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogOptionsViewController.h; path = DiveForFun/LogOptionsViewController.h; sourceTree = "<group>"; };
+		5752CCF617C6F58900AAA1CA /* LogOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogOptionsViewController.m; path = DiveForFun/LogOptionsViewController.m; sourceTree = "<group>"; };
 		5753D7401794CF6B00D074A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5753D7411794CF6B00D074A2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5753D7421794CF6B00D074A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -88,20 +99,23 @@
 		57558E28177404B000E982BF /* DIVELOG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIVELOG.m; sourceTree = "<group>"; };
 		57558E2A177404C700E982BF /* GISDATA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GISDATA.h; sourceTree = "<group>"; };
 		57558E2B177404C700E982BF /* GISDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GISDATA.m; sourceTree = "<group>"; };
-		57558E30177409CB00E982BF /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RouteViewController.h; path = ../RouteViewController.h; sourceTree = "<group>"; };
-		57558E31177409CB00E982BF /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RouteViewController.m; path = ../RouteViewController.m; sourceTree = "<group>"; };
-		57558E331774182100E982BF /* CrumbPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrumbPath.h; path = ../CrumbPath.h; sourceTree = "<group>"; };
-		57558E341774182100E982BF /* CrumbPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPath.m; path = ../CrumbPath.m; sourceTree = "<group>"; };
-		57558E361774185300E982BF /* CrumbPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrumbPathView.h; path = ../CrumbPathView.h; sourceTree = "<group>"; };
-		57558E371774185300E982BF /* CrumbPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrumbPathView.m; path = ../CrumbPathView.m; sourceTree = "<group>"; };
-		57559CD31798E76D000540E1 /* App_Icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App_Icon57.png; path = ../App_Icon57.png; sourceTree = "<group>"; };
-		57559CD41798E76D000540E1 /* App_Icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App_Icon114.png; path = ../App_Icon114.png; sourceTree = "<group>"; };
+		57558E30177409CB00E982BF /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		57558E31177409CB00E982BF /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		57558E331774182100E982BF /* CrumbPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrumbPath.h; sourceTree = "<group>"; };
+		57558E341774182100E982BF /* CrumbPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrumbPath.m; sourceTree = "<group>"; };
+		57558E361774185300E982BF /* CrumbPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrumbPathView.h; sourceTree = "<group>"; };
+		57558E371774185300E982BF /* CrumbPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrumbPathView.m; sourceTree = "<group>"; };
+		5756289318079C01000E0A36 /* SignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignatureViewController.h; path = ../SignatureViewController.h; sourceTree = "<group>"; };
+		5756289418079C01000E0A36 /* SignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignatureViewController.m; path = ../SignatureViewController.m; sourceTree = "<group>"; };
+		575C523217F9110F003ADDB7 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCell.h; path = ../PhotoCell.h; sourceTree = "<group>"; };
+		575C523317F9110F003ADDB7 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCell.m; path = ../PhotoCell.m; sourceTree = "<group>"; };
 		576166481777E3FD00798728 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogViewController.h; path = ../LogViewController.h; sourceTree = "<group>"; };
 		576166491777E3FD00798728 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogViewController.m; path = ../LogViewController.m; sourceTree = "<group>"; };
+		57623EBB17F425AC005ABC8B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		57CE958A177421D100A9DF2A /* GISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GISViewController.h; path = ../GISViewController.h; sourceTree = "<group>"; };
 		57CE958B177421D100A9DF2A /* GISViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GISViewController.m; path = ../GISViewController.m; sourceTree = "<group>"; };
-		57CE958D1774220800A9DF2A /* RoutingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoutingViewController.h; path = ../RoutingViewController.h; sourceTree = "<group>"; };
-		57CE958E1774220800A9DF2A /* RoutingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoutingViewController.m; path = ../RoutingViewController.m; sourceTree = "<group>"; };
+		57CE958D1774220800A9DF2A /* RoutingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutingViewController.h; sourceTree = "<group>"; };
+		57CE958E1774220800A9DF2A /* RoutingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutingViewController.m; sourceTree = "<group>"; };
 		57CE9590177427C100A9DF2A /* StartAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAnnotation.h; sourceTree = "<group>"; };
 		57CE9591177427C100A9DF2A /* StartAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAnnotation.m; sourceTree = "<group>"; };
 		57CE9593177427D200A9DF2A /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
@@ -113,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57623EBC17F425AC005ABC8B /* AssetsLibrary.framework in Frameworks */,
 				57558E1E1773D52300E982BF /* CoreLocation.framework in Frameworks */,
 				57558E1C1773D51800E982BF /* MapKit.framework in Frameworks */,
 				57558E1A1773D51100E982BF /* CoreData.framework in Frameworks */,
@@ -135,10 +150,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5751904217F3CF24007D2D7B /* Dropped */ = {
+			isa = PBXGroup;
+			children = (
+				5752CCF517C6F58900AAA1CA /* LogOptionsViewController.h */,
+				5752CCF617C6F58900AAA1CA /* LogOptionsViewController.m */,
+				57CE958D1774220800A9DF2A /* RoutingViewController.h */,
+				57CE958E1774220800A9DF2A /* RoutingViewController.m */,
+				57558E361774185300E982BF /* CrumbPathView.h */,
+				57558E371774185300E982BF /* CrumbPathView.m */,
+				57558E331774182100E982BF /* CrumbPath.h */,
+				57558E341774182100E982BF /* CrumbPath.m */,
+				57558E30177409CB00E982BF /* RouteViewController.h */,
+				57558E31177409CB00E982BF /* RouteViewController.m */,
+			);
+			name = Dropped;
+			sourceTree = "<group>";
+		};
 		57558DD81773D46700E982BF = {
 			isa = PBXGroup;
 			children = (
 				57558E221773E35300E982BF /* View.xib */,
+				5751904217F3CF24007D2D7B /* Dropped */,
 				57CE959717742A0A00A9DF2A /* Database */,
 				57CE9596177427D500A9DF2A /* Annotations */,
 				57558DEA1773D46700E982BF /* DiveForFun */,
@@ -160,6 +193,7 @@
 		57558DE31773D46700E982BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57623EBB17F425AC005ABC8B /* AssetsLibrary.framework */,
 				57558E1D1773D52300E982BF /* CoreLocation.framework */,
 				57558E1B1773D51800E982BF /* MapKit.framework */,
 				57558E191773D51100E982BF /* CoreData.framework */,
@@ -174,22 +208,20 @@
 		57558DEA1773D46700E982BF /* DiveForFun */ = {
 			isa = PBXGroup;
 			children = (
+				5756289318079C01000E0A36 /* SignatureViewController.h */,
+				5756289418079C01000E0A36 /* SignatureViewController.m */,
+				575C523217F9110F003ADDB7 /* PhotoCell.h */,
+				575C523317F9110F003ADDB7 /* PhotoCell.m */,
+				5751904317F3D194007D2D7B /* PhotoViewController.h */,
+				5751904417F3D194007D2D7B /* PhotoViewController.m */,
 				5754375F17850D100025E837 /* LogShoViewController.h */,
 				5754376017850D100025E837 /* LogShoViewController.m */,
 				5750B9401783BDB8000583AD /* LogRecordViewController.h */,
 				5750B9411783BDB8000583AD /* LogRecordViewController.m */,
 				576166481777E3FD00798728 /* LogViewController.h */,
 				576166491777E3FD00798728 /* LogViewController.m */,
-				57CE958D1774220800A9DF2A /* RoutingViewController.h */,
-				57CE958E1774220800A9DF2A /* RoutingViewController.m */,
 				57CE958A177421D100A9DF2A /* GISViewController.h */,
 				57CE958B177421D100A9DF2A /* GISViewController.m */,
-				57558E361774185300E982BF /* CrumbPathView.h */,
-				57558E371774185300E982BF /* CrumbPathView.m */,
-				57558E331774182100E982BF /* CrumbPath.h */,
-				57558E341774182100E982BF /* CrumbPath.m */,
-				57558E30177409CB00E982BF /* RouteViewController.h */,
-				57558E31177409CB00E982BF /* RouteViewController.m */,
 				57558DF31773D46700E982BF /* AppDelegate.h */,
 				57558DF41773D46700E982BF /* AppDelegate.m */,
 				57558DEB1773D46700E982BF /* Supporting Files */,
@@ -200,8 +232,8 @@
 		57558DEB1773D46700E982BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				57559CD31798E76D000540E1 /* App_Icon57.png */,
-				57559CD41798E76D000540E1 /* App_Icon114.png */,
+				5750B431179F5CBB0080B342 /* App_Icon57.png */,
+				5750B42F179F5CAC0080B342 /* App_Icon114.png */,
 				5753D7401794CF6B00D074A2 /* Default-568h@2x.png */,
 				5753D7411794CF6B00D074A2 /* Default@2x.png */,
 				5753D7421794CF6B00D074A2 /* Default.png */,
@@ -333,8 +365,8 @@
 				5753D7431794CF6B00D074A2 /* Default-568h@2x.png in Resources */,
 				5753D7441794CF6B00D074A2 /* Default@2x.png in Resources */,
 				5753D7451794CF6B00D074A2 /* Default.png in Resources */,
-				57559CD71798E76D000540E1 /* App_Icon57.png in Resources */,
-				57559CD81798E76D000540E1 /* App_Icon114.png in Resources */,
+				5750B430179F5CAC0080B342 /* App_Icon114.png in Resources */,
+				5750B432179F5CBB0080B342 /* App_Icon57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +417,10 @@
 				5750B9421783BDB8000583AD /* LogRecordViewController.m in Sources */,
 				5750B9451783BF3B000583AD /* LogAnnotation.m in Sources */,
 				5754376117850D100025E837 /* LogShoViewController.m in Sources */,
+				5752CCF717C6F58900AAA1CA /* LogOptionsViewController.m in Sources */,
+				5751904517F3D194007D2D7B /* PhotoViewController.m in Sources */,
+				575C523417F9110F003ADDB7 /* PhotoCell.m in Sources */,
+				5756289518079C01000E0A36 /* SignatureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveForFun/DiveForFun-Prefix.pch";
 				INFOPLIST_FILE = "DiveForFun/DiveForFun-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -500,7 +536,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DiveForFun/DiveForFun-Prefix.pch";
 				INFOPLIST_FILE = "DiveForFun/DiveForFun-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIAlertViewDelegate>
+//#import "LogOptionsViewController.h"/*don't forget import this before inputting the custom delegate*/
+
+@interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>//LogOptionsViewControllerDelegate>
 
 
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -47,5 +49,12 @@
 @property (nonatomic,strong) NSArray *mAndf;
 @property (nonatomic,strong) NSArray *cAndf;
 
+@property (nonatomic,strong) NSString *dateFromData;
+@property (nonatomic,strong) NSString *latFromData;
+@property (nonatomic,strong) NSString *lonFromData;
+@property (nonatomic,strong) NSString *timeFromData;
+
+@property (nonatomic,strong) UIImageView *selectedImagePresent;
+@property (nonatomic,strong) UIImageView *signaturePresent;
 
 @end

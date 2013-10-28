@@ -83,10 +83,10 @@
             tempArr = [resultController.fetchedObjects valueForKey:@"temperature"];
         }
         
-        delegate.logDate = dateArr;
-        delegate.logSite = siteArr;
-        delegate.logLat = latArr;
-        delegate.logLon = lonArr;
+//        delegate.logDate = dateArr;
+//        delegate.logSite = siteArr;
+//        delegate.logLat = latArr;
+//        delegate.logLon = lonArr;
 
     
 }

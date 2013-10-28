@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "LogViewController.h"
 
-@interface GISViewController : UITableViewController<UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface GISViewController : UITableViewController<UITableViewDelegate, NSFetchedResultsControllerDelegate,UIAlertViewDelegate>
 
 
-
+@property (nonatomic,strong)LogViewController *logViewController;
 
 
 @end

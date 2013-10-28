@@ -11,26 +11,31 @@
 
 @implementation AppDelegate
 
-@synthesize navi,managedModel,persistentstoreCoordinator,context,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite,routeViewController;
+//@synthesize ,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite,gisViewController;
+@synthesize date,site,airType,maxiumDepth,temperature,timeOfDiving,pressureOfEnd,pressureOfStart,visibility,imageData,signature,navi,managedModel,persistentstoreCoordinator,context,gisViewController;
+@synthesize selectedCellImage,signatureImage;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initCoreData];
     
-    self.latGIS = [[NSArray alloc] init];
-    self.lonGIS = [[NSArray alloc] init];
-    self.timeGIS = [[NSArray alloc] init];
-    self.courseGIS = [[NSArray alloc] init];
-    self.altGIS = [[NSArray alloc] init];
-    self.logLon = [[NSArray alloc] init];
-    self.logLat = [[NSArray alloc] init];
-    self.logSite = [[NSArray alloc] init];
-    self.logDate = [[NSArray alloc] init];
+//    self.latGIS = [[NSArray alloc] init];
+//    self.lonGIS = [[NSArray alloc] init];
+//    self.timeGIS = [[NSArray alloc] init];
+//    self.courseGIS = [[NSArray alloc] init];
+//    self.altGIS = [[NSArray alloc] init];
+//    self.logLon = [[NSArray alloc] init];
+//    self.logLat = [[NSArray alloc] init];
+//    self.logSite = [[NSArray alloc] init];
+//    self.logDate = [[NSArray alloc] init];
+   
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //self.mainViewController = [[MainViewController alloc] init];
-    self.routeViewController = [[RouteViewController alloc] init];
-    self.navi = [[UINavigationController alloc] initWithRootViewController:routeViewController];
+    //self.routeViewController = [[RouteViewController alloc] init];
+    self.gisViewController = [[GISViewController alloc] init];
+    self.navi = [[UINavigationController alloc] initWithRootViewController:gisViewController];
     self.window.rootViewController = navi;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -48,15 +53,15 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    RouteViewController *routeController = (RouteViewController *)self.navi.visibleViewController;
-    [routeController switchToBackgroundMode:YES];
+//    RouteViewController *routeController = (RouteViewController *)self.navi.visibleViewController;
+//    [routeController switchToBackgroundMode:YES];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    RouteViewController *routeController = (RouteViewController *)self.navi.visibleViewController;
-    [routeController switchToBackgroundMode:NO];
+//    RouteViewController *routeController = (RouteViewController *)self.navi.visibleViewController;
+//    [routeController switchToBackgroundMode:NO];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -68,6 +73,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 -(void)initCoreData
 {

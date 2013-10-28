@@ -11,12 +11,16 @@
 #import "GISDATA.h"
 #import "RoutingViewController.h"
 #import "RouteViewController.h"
+#import "DIVELOG.h"
+#import "LogShoViewController.h"
 
 @interface GISViewController (){
     AppDelegate *delegate;
     GISDATA *database;
+    DIVELOG *logDataBase;
     RouteViewController *routeViewController;
     RoutingViewController *routingViewController;
+    LogShoViewController *logShowViewController;
     //NSFetchedResultsController *resultController;
 }
 @property (nonatomic,strong) NSFetchedResultsController *resultController;
@@ -24,11 +28,12 @@
 
 @implementation GISViewController
 @synthesize resultController;
+@synthesize logViewController;
 
 -(void)fetchData
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"GISDATA" inManagedObjectContext:delegate.context]];
+    [request setEntity:[NSEntityDescription entityForName:@"DIVELOG" inManagedObjectContext:delegate.context]];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     NSArray *descriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -36,16 +41,30 @@
     
     NSError *error;
     resultController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:delegate.context sectionNameKeyPath:@"date" cacheName:nil];
-    
+    resultController.delegate = self;
     if (![resultController performFetch:&error]) {
         NSLog(@"error : %@", [error localizedFailureReason]);
     }
 }
 
--(void)toMap:(id)sender
+-(void)toLog:(id)sender
 {
     [delegate.navi pushViewController:routeViewController animated:YES];
     NSLog(@"table page");
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+
+            
+        case 1:
+            [delegate.navi pushViewController:logViewController animated:NO];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 //-(void)goBack:(id)sender
@@ -59,11 +78,17 @@
     [super loadView];
     
     delegate = [[UIApplication sharedApplication] delegate];
-    routeViewController = [[RouteViewController alloc] init];
-    routingViewController = [[RoutingViewController alloc] init];
+//    routeViewController = [[RouteViewController alloc] init];
+//    routingViewController = [[RoutingViewController alloc] init];
+    logShowViewController = [[LogShoViewController alloc] init];
+    logViewController = [[LogViewController alloc] init];
     
-    UIBarButtonItem *toMap = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:self action:@selector(toMap:)];
-    self.navigationItem.leftBarButtonItem = toMap;
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toLogView:)];
+    self.navigationItem.rightBarButtonItem = add;
+    self.navigationItem.hidesBackButton = YES;
+    
+//    UIBarButtonItem *toLog = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(toLog:)];
+//    self.navigationItem.leftBarButtonItem = toLog;
     
 //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Table" style:UIBarButtonItemStyleBordered target:self action:@selector(goBack:)];
 //    self.navigationItem.backBarButtonItem = backButton;
@@ -73,12 +98,30 @@
 {
     [super viewDidLoad];
     [self fetchData];
-
+    
+    if (! resultController.fetchedObjects.count) {
+        
+        UIAlertView *noLogData = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"There are no logs. Press OK to add one or Cancel to leave." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        [noLogData show];
+        
+        NSLog(@"No data at this moment");
+        
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    int count = resultController.fetchedObjects.count;
+    NSString *title = [NSString stringWithFormat:@"目前支數:%i", count];
+    self.navigationItem.title = title;
+    
 }
 
 -(void)viewDidUnload
@@ -92,6 +135,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)toLogView:(id)sender
+{
+    [delegate.navi pushViewController:logViewController animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -131,15 +179,29 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basic cell"];
     }
+        
+        NSManagedObject *managedObject = [resultController objectAtIndexPath:indexPath];
+        //    NSDate *dataTime = [managedObject valueForKey:@"date"];
+        //    NSDateFormatter *toString = [[NSDateFormatter alloc] init];
+        //    [toString setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        //    NSString *timeStr = [toString stringFromDate:dataTime];
+        NSString *timeStr = [managedObject valueForKey:@"date"];
+        
+        NSData *logImageData = [managedObject valueForKey:@"others"];
+        
+        if (logImageData == NULL) {
+            cell.textLabel.text = timeStr;
+        }else{
+            
+            cell.textLabel.text = timeStr;
+            cell.imageView.image = [UIImage imageWithData:logImageData];
+            
+        }
+        // Configure the cell...
+        
     
-    NSManagedObject *managedObject = [resultController objectAtIndexPath:indexPath];
-    NSDate *dataTime = [managedObject valueForKey:@"date"];
-    NSDateFormatter *toString = [[NSDateFormatter alloc] init];
-    [toString setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *timeStr = [toString stringFromDate:dataTime];
-    cell.textLabel.text = timeStr;
     
-    // Configure the cell...
+   
     
     return cell;
 
@@ -154,19 +216,28 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSError *error = nil;
+        [delegate.context deleteObject:[resultController objectAtIndexPath:indexPath]];
+        if (![delegate.context save:&error]) {
+            NSLog(@"Error: %@", [error localizedFailureReason]);
+        }
+        
+        [self fetchData];
     }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+ 
 }
-*/
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView reloadData];
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -197,22 +268,50 @@
      */
     
     NSManagedObject *managedObject = [resultController objectAtIndexPath:indexPath];
-    NSArray *latArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"latitude"]];
-    NSLog(@"latitude is %@", [latArr lastObject]);
-    NSArray *lonArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"lontitude"]];
-    NSArray *couArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"course"]];
-    NSArray *altArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"altitude"]];
-    NSArray *tsmArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"timestamp"]];
+//    NSArray *latArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"latitude"]];
+//    NSLog(@"latitude is %@", [latArr lastObject]);
+//    NSArray *lonArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"lontitude"]];
+//    NSArray *couArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"course"]];
+//    NSArray *altArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"altitude"]];
+//    NSArray *tsmArr = [NSKeyedUnarchiver unarchiveObjectWithData:[managedObject valueForKey:@"timestamp"]];
+//    
+//    delegate.latGIS = latArr;
+//    delegate.lonGIS = lonArr;
+//    delegate.altGIS = altArr;
+//    delegate.courseGIS = couArr;
+//    delegate.timeGIS = tsmArr;
+    NSString *logDate = [managedObject valueForKey:@"date"];
+    NSString *logSite = [managedObject valueForKey:@"site"];
+    NSString *logTime = [managedObject valueForKey:@"dive_time"];
+    NSString *logDepth = [managedObject valueForKey:@"max_depth"];
+    NSString *logGas = [managedObject valueForKey:@"gas_type"];
+    NSString *logVisibility = [managedObject valueForKey:@"visibility"];
+    NSString *logTemperature = [managedObject valueForKey:@"temperature"];
+    NSString *logStartPressure = [managedObject valueForKey:@"start_pressure"];
+    NSString *logEndPressure = [managedObject valueForKey:@"end_pressure"];
+    NSData *logImageData = [managedObject valueForKey:@"others"];
+    NSData *logSignature = [managedObject valueForKey:@"signature"];
     
-    delegate.latGIS = latArr;
-    delegate.lonGIS = lonArr;
-    delegate.altGIS = altArr;
-    delegate.courseGIS = couArr;
-    delegate.timeGIS = tsmArr;
+    delegate.date = logDate;
+    delegate.site = logSite;
+    delegate.timeOfDiving = logTime;
+    delegate.airType = logGas;
+    delegate.pressureOfStart = logStartPressure;
+    delegate.pressureOfEnd = logEndPressure;
+    delegate.maxiumDepth = logDepth;
+    delegate.visibility = logVisibility;
+    delegate.temperature = logTemperature;
+    delegate.imageData = logImageData;
+    delegate.signature = logSignature;
     
+    UINavigationController *navLogViewController = [[UINavigationController alloc] initWithRootViewController:logShowViewController];
+    
+    navLogViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:navLogViewController animated:YES completion:^{
 
-    
-    [delegate.navi pushViewController:routingViewController animated:YES];
+        NULL;
+       
+    }];
 }
 
 

@@ -12,12 +12,14 @@
 #import "AppDelegate.h"
 #import "StartAnnotation.h"
 #import "StopAnnotation.h"
+#import "RouteViewController.h"
 
 @interface RoutingViewController (){
     
     AppDelegate *delegate;
     GISViewController *table;
     GISDATA *gisData;
+    RouteViewController *routeViewController;
 //    NSFetchedResultsController *resultController;
 //    NSArray *latArray;
 //    NSArray *lonArray;
@@ -66,8 +68,8 @@
         //lonArray = delegate.lonGIS;
         //[NSKeyedUnarchiver unarchiveObjectWithData:coordinate.lontitude];
     
-    latArray = delegate.latGIS;
-    lonArray = delegate.lonGIS;
+//    latArray = delegate.latGIS;
+//    lonArray = delegate.lonGIS;
     
         MKMapPoint northPoint;
         MKMapPoint southPoint;
@@ -231,18 +233,20 @@
 
     table = [[GISViewController alloc] init];
     
+    routeViewController = [[RouteViewController alloc] init];
+    
     delegate = [[UIApplication sharedApplication] delegate];
     
     _routeMap = [[MKMapView alloc] initWithFrame:delegate.window.frame];
     _routeMap.delegate = self;
     [self.view addSubview:_routeMap];
     
-    NSString *couStralt = [NSString stringWithFormat:@"course:%@, altitude:%@", [delegate.courseGIS objectAtIndex:0],[delegate.altGIS objectAtIndex:0]];
+//    NSString *couStralt = [NSString stringWithFormat:@"course:%@, altitude:%@", [delegate.courseGIS objectAtIndex:0],[delegate.altGIS objectAtIndex:0]];
 
     
     UITextView *show = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     show.backgroundColor = [UIColor clearColor];
-    [show setText:couStralt];
+//    [show setText:couStralt];
     show.textColor = [UIColor redColor];
     [show setFont:[UIFont systemFontOfSize:10]];
     show.textAlignment = NSTextAlignmentCenter;
@@ -277,6 +281,41 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self resignFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        [self performSelector:@selector(mainPage)];
+    }
+}
+
+-(void)mainPage
+{
+//    UINavigationController *naviControl = [[UINavigationController alloc] initWithRootViewController:routeViewController];
+//    naviControl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:naviControl animated:YES completion:^{
+//        NULL;
+//    }];
+
+    [delegate.navi pushViewController:routeViewController animated:NO];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -284,5 +323,7 @@
     table = nil;
     gisData = nil;
 }
+
+
 
 @end
