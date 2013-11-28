@@ -13,7 +13,8 @@
 @interface GISViewController : UITableViewController<UITableViewDelegate, NSFetchedResultsControllerDelegate,UIAlertViewDelegate>
 
 
-@property (nonatomic,strong)LogViewController *logViewController;
+@property (nonatomic,strong) LogViewController *logViewController;
+
 
 
 @end

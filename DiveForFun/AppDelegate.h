@@ -10,6 +10,7 @@
 //#import "MainViewController.h"
 //#import "RouteViewController.h"
 #import "GISViewController.h"
+#import "StarterViewController.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -19,6 +20,7 @@
 //@property (nonatomic,strong) MainViewController *mainViewController;
 //@property (nonatomic,strong) RouteViewController *routeViewController;
 @property (nonatomic,strong) GISViewController *gisViewController;
+@property (nonatomic,strong) StarterViewController *starterViewController;
 
 
 @property (readonly , strong , nonatomic) NSManagedObjectModel *managedModel;

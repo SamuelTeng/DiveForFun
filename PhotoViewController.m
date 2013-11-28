@@ -64,6 +64,10 @@
     delegate = [[UIApplication sharedApplication] delegate];
     logViewController = [[LogViewController alloc] init];
     
+    
+//    self.collectionView.autoresizesSubviews = YES;
+//    self.collectionView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     [self.collectionView setDataSource:self];
@@ -184,25 +188,27 @@
 }
 
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
-}
+//-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+//{
+//    //return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+//    return toInterfaceOrientation == UIDeviceOrientationPortrait;
+//}
 
--(BOOL)shouldAutorotate
-{
-    return NO;
-}
+//-(BOOL)shouldAutorotate
+//{
+//    return NO;
+//}
+//
+//-(NSUInteger)supportedInterfaceOrientations
+//{
+//    return 2;
+//    //UIInterfaceOrientationMaskPortrait;
+//}
 
--(NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//    return UIInterfaceOrientationPortrait;
+//}
 
 
 @end

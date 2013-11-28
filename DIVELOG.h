@@ -16,8 +16,8 @@
 @property (nonatomic, retain) NSNumber * dive_time;
 @property (nonatomic, retain) NSString * max_depth;
 @property (nonatomic, retain) NSString * gas_type;
-@property (nonatomic, retain) NSString * latitude;
-@property (nonatomic, retain) NSString * lontitude;
+@property (nonatomic, retain) NSString * waves;
+@property (nonatomic, retain) NSString * current;
 @property (nonatomic, retain) NSString * site;
 @property (nonatomic, retain) NSString * visibility;
 @property (nonatomic, retain) NSString * temperature;

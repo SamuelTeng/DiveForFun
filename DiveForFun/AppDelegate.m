@@ -12,7 +12,7 @@
 @implementation AppDelegate
 
 //@synthesize ,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite,gisViewController;
-@synthesize date,site,airType,maxiumDepth,temperature,timeOfDiving,pressureOfEnd,pressureOfStart,visibility,imageData,signature,navi,managedModel,persistentstoreCoordinator,context,gisViewController;
+@synthesize date,site,airType,maxiumDepth,temperature,timeOfDiving,pressureOfEnd,pressureOfStart,visibility,imageData,signature,navi,managedModel,persistentstoreCoordinator,context,gisViewController,starterViewController;
 @synthesize selectedCellImage,signatureImage;
 
 
@@ -34,8 +34,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     //self.mainViewController = [[MainViewController alloc] init];
     //self.routeViewController = [[RouteViewController alloc] init];
-    self.gisViewController = [[GISViewController alloc] init];
-    self.navi = [[UINavigationController alloc] initWithRootViewController:gisViewController];
+    //self.gisViewController = [[GISViewController alloc] init];
+    self.starterViewController = [[StarterViewController alloc] init];
+    self.navi = [[UINavigationController alloc] initWithRootViewController:starterViewController];
     self.window.rootViewController = navi;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

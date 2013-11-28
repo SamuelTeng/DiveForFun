@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface LogAnnotation : NSObject<MKAnnotation>
+@interface LogAnnotation : NSObject <MKAnnotation>
 @property (nonatomic) CLLocationCoordinate2D _coordinate;
 @property (nonatomic,strong) NSString *_title;
 @property (nonatomic,strong) NSString *_subtitle;

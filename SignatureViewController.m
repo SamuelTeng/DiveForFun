@@ -32,6 +32,11 @@
     [delegate.navi popViewControllerAnimated:YES];
 }
 
+-(void)clear:(id)sender
+{
+    signnatureImage.image = nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,9 +46,13 @@
     [self.view addSubview:signnatureImage];
     mouseMoved = 0;
     self.view.backgroundColor = [UIColor lightGrayColor];
+
     
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(sendSignature:)];
     self.navigationItem.leftBarButtonItem = back;
+    
+    UIBarButtonItem *erase = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"eraser.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
+    self.navigationItem.rightBarButtonItem = erase;
     
     delegate = [[UIApplication sharedApplication] delegate];
     logViewCOntroller = [[LogViewController alloc] init];
@@ -54,10 +63,10 @@
 {
     mouseSwiped = NO;
     UITouch *touch = [touches anyObject];
-    if ([touch tapCount] == 2) {
-        signnatureImage.image = nil;
-        return;
-    }
+//    if ([touch tapCount] == 2) {
+//        signnatureImage.image = nil;
+//        return;
+//    }
     
     lastpoint = [touch locationInView:self.view];
     lastpoint.y -= 20;
@@ -93,12 +102,12 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    
-    if ([touch tapCount] == 2) {
-        signnatureImage.image = nil;
-        return;
-    }
+//    UITouch *touch = [touches anyObject];
+//    
+//    if ([touch tapCount] == 2) {
+//        signnatureImage.image = nil;
+//        return;
+//    }
     
     if (!mouseSwiped) {
         UIGraphicsBeginImageContext(self.view.frame.size);

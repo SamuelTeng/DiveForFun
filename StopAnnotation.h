@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface StopAnnotation : NSObject <MKAnnotation>
+@interface StopAnnotation : NSObject //<MKAnnotation>
 
 @end

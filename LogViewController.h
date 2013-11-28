@@ -17,8 +17,8 @@
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UILabel *dateLabel;
 @property (nonatomic,strong) UILabel *siteLabel;
-@property (nonatomic,strong) UILabel *latLabel;
-@property (nonatomic,strong) UILabel *lonLabel;
+@property (nonatomic,strong) UILabel *wavesLabel;
+@property (nonatomic,strong) UILabel *currentLabel;
 @property (nonatomic,strong) UILabel *maxDepLabel;
 @property (nonatomic,strong) UILabel *gasLabel;
 @property (nonatomic,strong) UILabel *divetimeLabel;
@@ -29,8 +29,8 @@
 @property (nonatomic,strong) UILabel *otherLabel;
 @property (nonatomic,strong) UITextField *dateField;
 @property (nonatomic,strong) UITextField *siteField;
-@property (nonatomic,strong) UITextField *latField;
-@property (nonatomic,strong) UITextField *lonField;
+@property (nonatomic,strong) UITextField *wavesField;
+@property (nonatomic,strong) UITextField *currentField;
 @property (nonatomic,strong) UITextField *maxDepField;
 @property (nonatomic,strong) UITextField *gasField;
 @property (nonatomic,strong) UITextField *divetimeField;
@@ -48,10 +48,13 @@
 @property (nonatomic,strong) NSArray *forthRow;
 @property (nonatomic,strong) NSArray *mAndf;
 @property (nonatomic,strong) NSArray *cAndf;
+@property (nonatomic,strong) NSArray *wavesArr;
+@property (nonatomic,strong) NSArray *currentArr;
+
 
 @property (nonatomic,strong) NSString *dateFromData;
-@property (nonatomic,strong) NSString *latFromData;
-@property (nonatomic,strong) NSString *lonFromData;
+@property (nonatomic,strong) NSString *wavesFromData;
+@property (nonatomic,strong) NSString *currentFromData;
 @property (nonatomic,strong) NSString *timeFromData;
 
 @property (nonatomic,strong) UIImageView *selectedImagePresent;

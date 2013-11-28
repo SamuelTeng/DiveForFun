@@ -23,5 +23,9 @@
 @property (nonatomic,strong) NSString *visib;
 @property (nonatomic,strong) NSData *img;
 @property (nonatomic,strong) NSData *sign;
+@property (nonatomic,strong) NSString *waves;
+@property (nonatomic,strong) NSString *current;
 @property (nonatomic,strong) UIScrollView *logShowView;
+
+@property (nonatomic,strong) NSIndexPath *contenPath;
 @end

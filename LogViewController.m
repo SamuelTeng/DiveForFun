@@ -66,7 +66,7 @@
 
 @implementation LogViewController
 
-@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,latField,latLabel,lonField,lonLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,latFromData,lonFromData,timeFromData,selectedImagePresent,signaturePresent;
+@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,wavesField,wavesLabel,currentField,currentLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,wavesFromData,currentFromData,timeFromData,selectedImagePresent,signaturePresent,wavesArr,currentArr;
 
 
 -(void)saveToData:(id)sender
@@ -80,10 +80,10 @@
         
         
         
-        NSString *latitude = latField.text;
+        NSString *waves = wavesField.text;
         
         
-        NSString *lontitude= lonField.text;
+        NSString *current= currentField.text;
         
         
         
@@ -117,8 +117,8 @@
         //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
         dateField.text = nil;
         siteField.text = nil;
-        latField.text = nil;
-        lonField.text = nil;
+        wavesField.text = nil;
+        currentField.text = nil;
         maxDepField.text = nil;
         gasField.text = nil;
         divetimeField.text = nil;
@@ -131,8 +131,8 @@
         
         database.date = dateStr;
         database.site = site;
-        database.latitude = latitude;
-        database.lontitude = lontitude;
+        database.waves = waves;
+        database.current = current;
         database.max_depth = maxDepth;
         database.gas_type = gasType;
         database.dive_time = _diveTime;
@@ -163,10 +163,10 @@
         
         
         
-        NSString *latitude = latField.text;
+        NSString *waves = wavesField.text;
         
         
-        NSString *lontitude= lonField.text;
+        NSString *current= currentField.text;
         
         
         
@@ -203,8 +203,8 @@
         
         dateField.text = nil;
         siteField.text = nil;
-        latField.text = nil;
-        lonField.text = nil;
+        wavesField.text = nil;
+        currentField.text = nil;
         maxDepField.text = nil;
         gasField.text = nil;
         divetimeField.text = nil;
@@ -220,8 +220,8 @@
         
         database.date = dateStr;
         database.site = site;
-        database.latitude = latitude;
-        database.lontitude = lontitude;
+        database.waves = waves;
+        database.current = current;
         database.max_depth = maxDepth;
         database.gas_type = gasType;
         database.dive_time = _diveTime;
@@ -251,10 +251,10 @@
         
         
         
-        NSString *latitude = latField.text;
+        NSString *waves = wavesField.text;
         
         
-        NSString *lontitude= lonField.text;
+        NSString *curret= currentField.text;
         
         
         
@@ -291,8 +291,8 @@
         
         dateField.text = nil;
         siteField.text = nil;
-        latField.text = nil;
-        lonField.text = nil;
+        wavesField.text = nil;
+        currentField.text = nil;
         maxDepField.text = nil;
         gasField.text = nil;
         divetimeField.text = nil;
@@ -307,8 +307,8 @@
         
         database.date = dateStr;
         database.site = site;
-        database.latitude = latitude;
-        database.lontitude = lontitude;
+        database.waves = waves;
+        database.current = curret;
         database.max_depth = maxDepth;
         database.gas_type = gasType;
         database.dive_time = _diveTime;
@@ -338,10 +338,10 @@
         
         
         
-        NSString *latitude = latField.text;
+        NSString *waves = wavesField.text;
         
         
-        NSString *lontitude= lonField.text;
+        NSString *current= currentField.text;
         
         
         
@@ -378,8 +378,8 @@
         
         dateField.text = nil;
         siteField.text = nil;
-        latField.text = nil;
-        lonField.text = nil;
+        wavesField.text = nil;
+        currentField.text = nil;
         maxDepField.text = nil;
         gasField.text = nil;
         divetimeField.text = nil;
@@ -396,8 +396,8 @@
         
         database.date = dateStr;
         database.site = site;
-        database.latitude = latitude;
-        database.lontitude = lontitude;
+        database.waves = waves;
+        database.current = current;
         database.max_depth = maxDepth;
         database.gas_type = gasType;
         database.dive_time = _diveTime;
@@ -466,6 +466,10 @@
         return 5;
     }else if (aPickerView.tag == 206){
         return 4;
+    }else if (aPickerView.tag == 207){
+        return 1;
+    }else if (aPickerView.tag == 208){
+        return 1;
     }
 
     return 0;
@@ -527,6 +531,10 @@
             return [mAndf count];
         }
         
+    }else if (pickerView.tag == 207){
+        return [wavesArr count];
+    }else if (pickerView.tag == 208){
+        return [currentArr count];
     }
 
     return 0;
@@ -586,6 +594,10 @@
         }else if (component == 3){
             return [mAndf objectAtIndex:row];
         }
+    }else if (pickerView.tag == 207){
+        return [wavesArr objectAtIndex:row];
+    }else if (pickerView.tag == 208){
+        return [currentArr objectAtIndex:row];
     }
 
     
@@ -628,6 +640,14 @@
         NSInteger row3 = [pickerView selectedRowInComponent:2];
         NSInteger row4 = [pickerView selectedRowInComponent:3];
         visiField.text = [NSString stringWithFormat:@"%@%@%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
+    }else if (pickerView.tag == 207){
+        NSInteger row = [pickerView selectedRowInComponent:0];
+        selectedRow = [wavesArr objectAtIndex:row];
+        wavesField.text = selectedRow;
+    }else if (pickerView.tag == 208){
+        NSInteger row = [pickerView selectedRowInComponent:0];
+        selectedRow = [currentArr objectAtIndex:row];
+        currentField.text = selectedRow;
     }
     
     
@@ -663,13 +683,40 @@
         
     }else if (aTextField.tag == 103){
         
-        aTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-        aTextField.returnKeyType = UIReturnKeyDone;
+        UIPickerView *wavePicker = [[UIPickerView alloc] init];
+        wavePicker.delegate = self;
+        wavePicker.dataSource = self;
+        wavePicker.showsSelectionIndicator = YES;
+        [wavePicker setFrame:CGRectMake(0, 480, 320, 180)];
         
+        [wavePicker setTag:207];
+        
+        aTextField.inputView = wavePicker;
+        NSInteger row = [wavePicker selectedRowInComponent:0];
+        aTextField.text = [wavesArr objectAtIndex:row];
+        
+        UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
+        cancelBar.items = [NSArray arrayWithObject:right];
+        aTextField.inputAccessoryView = cancelBar;
     }else if (aTextField.tag == 104){
         
-        aTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-        aTextField.returnKeyType = UIReturnKeyDone;
+        UIPickerView *currentPicker = [[UIPickerView alloc] init];
+        currentPicker.delegate = self;
+        currentPicker.dataSource = self;
+        currentPicker.showsSelectionIndicator = YES;
+        [currentPicker setFrame:CGRectMake(0, 480, 320, 180)];
+        
+        [currentPicker setTag:208];
+        
+        aTextField.inputView = currentPicker;
+        NSInteger row = [currentPicker selectedRowInComponent:0];
+        aTextField.text = [currentArr objectAtIndex:row];
+        
+        UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
+        cancelBar.items = [NSArray arrayWithObject:right];
+        aTextField.inputAccessoryView = cancelBar;
     }else if (aTextField.tag == 105){
         
         UIPickerView *gasPicker = [[UIPickerView alloc] init];
@@ -801,7 +848,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ((dateField.text.length > 0) && (latField.text.length > 0) && (lonField.text.length > 0)
+    if ((dateField.text.length > 0) && (wavesField.text.length > 0) && (currentField.text.length > 0)
         && (gasField.text.length > 0) && (staPreField.text.length > 0) &&
         (_endPreField.text.length > 0) && (maxDepField.text.length > 0) && (divetimeField.text.length >0) && (temperField.text.length > 0) && (visiField.text.length > 0)) {
                self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -856,27 +903,27 @@
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
-    latLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
-    [latLabel setText:@"經度"];
-    [scrollView addSubview:latLabel];
+    wavesLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
+    [wavesLabel setText:@"浪況"];
+    [scrollView addSubview:wavesLabel];
     
-    latField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
-    [latField setTag:103];
-    latField.delegate = self;
-    latField.placeholder = @"25.061033";
-    latField.borderStyle = UITextBorderStyleRoundedRect;
-    [scrollView addSubview:latField];
+    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
+    [wavesField setTag:103];
+    wavesField.delegate = self;
+    //wavesField.placeholder = @"25.061033";
+    wavesField.borderStyle = UITextBorderStyleRoundedRect;
+    [scrollView addSubview:wavesField];
     
-    lonLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
-    [lonLabel setText:@"緯度"];
-    [scrollView addSubview:lonLabel];
+    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
+    [currentLabel setText:@"水流"];
+    [scrollView addSubview:currentLabel];
     
-    lonField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
-    [lonField setTag:104];
-    lonField.delegate = self;
-    lonField.placeholder = @"121.646056";
-    lonField.borderStyle = UITextBorderStyleRoundedRect;
-    [scrollView addSubview:lonField];
+    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
+    [currentField setTag:104];
+    currentField.delegate = self;
+    //currentField.placeholder = @"121.646056";
+    currentField.borderStyle = UITextBorderStyleRoundedRect;
+    [scrollView addSubview:currentField];
     
     gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
     [gasLabel setText:@"氣源"];
@@ -989,7 +1036,15 @@
 
 -(void)partnerSingnature:(id)sender
 {
-    [delegate.navi pushViewController:signatureViewController animated:YES];
+    if (signaturePresent.image != nil) {
+        [delegate.navi pushViewController:signatureViewController animated:YES];
+        signaturePresent.image = nil;
+    }else{
+        
+        [delegate.navi pushViewController:signatureViewController animated:YES];
+    }
+    
+    
 }
 
 -(void)loadView
@@ -1008,6 +1063,10 @@
     _forthRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     mAndf = [NSArray arrayWithObjects:@"m",@"ft", nil];
     _cAndf = [NSArray arrayWithObjects:@"°C",@"°F", nil];
+    
+    wavesArr = [NSArray arrayWithObjects:@"平",@"小",@"中",@"大", nil];
+    currentArr = [NSArray arrayWithObjects:@"有",@"無", nil];
+    
     
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveToData:)];
     self.navigationItem.rightBarButtonItem = save;

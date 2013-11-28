@@ -15,8 +15,8 @@
 @dynamic dive_time;
 @dynamic max_depth;
 @dynamic gas_type;
-@dynamic latitude;
-@dynamic lontitude;
+@dynamic waves;
+@dynamic current;
 @dynamic site;
 @dynamic visibility;
 @dynamic temperature;

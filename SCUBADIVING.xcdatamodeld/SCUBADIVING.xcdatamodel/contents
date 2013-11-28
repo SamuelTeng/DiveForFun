@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DIVELOG" representedClassName="DIVELOG" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dive_time" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="end_pressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gas_type" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lontitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="max_depth" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="others" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="signature" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -14,6 +13,7 @@
         <attribute name="start_pressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visibility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="waves" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="GISDATA" representedClassName="GISDATA" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -24,7 +24,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DIVELOG" positionX="160" positionY="192" width="128" height="240"/>
-        <element name="GISDATA" positionX="457" positionY="192" width="128" height="135"/>
+        <element name="DIVELOG" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="GISDATA" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
