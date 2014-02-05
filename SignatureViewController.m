@@ -26,7 +26,7 @@
     if (signnatureImage.image == nil) {
         NSLog(@"no image");
     }
-    delegate.signatureImage = signnatureImage.image;
+    //delegate.signatureImage = signnatureImage.image;
     signnatureImage.image = nil;
     
     [delegate.navi popViewControllerAnimated:YES];
@@ -123,8 +123,8 @@
         signnatureImage.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        signatureSent = [[UIImageView alloc] initWithImage:signnatureImage.image];
-        delegate.signatureImage = signatureSent.image;
+//        signatureSent = [[UIImageView alloc] initWithImage:signnatureImage.image];
+//        delegate.signatureImage = signatureSent.image;
     }
 }
 - (void)didReceiveMemoryWarning

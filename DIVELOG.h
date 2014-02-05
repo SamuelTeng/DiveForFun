@@ -24,6 +24,6 @@
 @property (nonatomic, retain) NSString * start_pressure;
 @property (nonatomic, retain) NSString * end_pressure;
 @property (nonatomic, retain) NSData * others;
-@property (nonatomic, retain) NSData * signature;
+
 
 @end

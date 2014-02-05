@@ -58,6 +58,6 @@
 @property (nonatomic,strong) NSString *timeFromData;
 
 @property (nonatomic,strong) UIImageView *selectedImagePresent;
-@property (nonatomic,strong) UIImageView *signaturePresent;
+//@property (nonatomic,strong) UIImageView *signaturePresent;
 
 @end

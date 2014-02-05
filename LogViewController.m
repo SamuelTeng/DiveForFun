@@ -57,7 +57,7 @@
     //LogOptionsViewController *logOptionsViewController;
     GISViewController *gisViewController;
     PhotoViewController *photoViewController;
-    SignatureViewController *signatureViewController;
+    //SignatureViewController *signatureViewController;
     
 }
 
@@ -66,12 +66,12 @@
 
 @implementation LogViewController
 
-@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,wavesField,wavesLabel,currentField,currentLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,wavesFromData,currentFromData,timeFromData,selectedImagePresent,signaturePresent,wavesArr,currentArr;
+@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,wavesField,wavesLabel,currentField,currentLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,wavesFromData,currentFromData,timeFromData,selectedImagePresent,wavesArr,currentArr;
 
 
 -(void)saveToData:(id)sender
 {
-    if (selectedImagePresent.image == nil && signaturePresent.image == nil) {
+    if (selectedImagePresent.image == nil ) {
         NSString *dateStr = dateField.text;
         NSLog(@"%@",dateStr);
         
@@ -153,181 +153,6 @@
         //[delegate.navi pushViewController:logRecordViewController animated:YES];
         [delegate.navi pushViewController:gisViewController animated:YES];
 
-    }else if(signaturePresent.image == nil){
-        
-        NSString *dateStr = dateField.text;
-        NSLog(@"%@",dateStr);
-        
-        
-        NSString *site = siteField.text;
-        
-        
-        
-        NSString *waves = wavesField.text;
-        
-        
-        NSString *current= currentField.text;
-        
-        
-        
-        NSString *maxDepth = maxDepField.text;
-        
-        
-        NSString *gasType = gasField.text;
-        
-        
-        NSString *diveTime = divetimeField.text;
-        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-        
-        
-        NSString *visibility = visiField.text;
-        
-        
-        NSString *temperature = temperField.text;
-        
-        
-        NSString *startPressure = staPreField.text;
-        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-        
-        
-        NSString *endPressure = _endPreField.text;
-        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-        
-        NSData *imgData = [NSData dataWithData:UIImagePNGRepresentation(selectedImagePresent.image)];
-        
-        dateField.text = nil;
-        siteField.text = nil;
-        wavesField.text = nil;
-        currentField.text = nil;
-        maxDepField.text = nil;
-        gasField.text = nil;
-        divetimeField.text = nil;
-        visiField.text = nil;
-        temperField.text = nil;
-        staPreField.text = nil;
-        _endPreField.text = nil;
-        selectedImagePresent.image = nil;
-        delegate.selectedCellImage = nil;
-
-        
-        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
-        
-        database.date = dateStr;
-        database.site = site;
-        database.waves = waves;
-        database.current = current;
-        database.max_depth = maxDepth;
-        database.gas_type = gasType;
-        database.dive_time = _diveTime;
-        database.visibility = visibility;
-        database.temperature = temperature;
-        database.start_pressure = startPressure;
-        database.end_pressure = endPressure;
-        database.others = imgData;
-        
-        
-        NSError *error;
-        if (![managedObjectContext save:&error]) {
-            NSLog(@"error:%@", [error localizedFailureReason]);
-        }
-        
-        NSLog(@"image selected");
-        
-        //[delegate.navi pushViewController:logRecordViewController animated:YES];
-        [delegate.navi pushViewController:gisViewController animated:YES];
-        
-    }else if (selectedImagePresent.image == nil){
-        NSString *dateStr = dateField.text;
-        NSLog(@"%@",dateStr);
-        
-        
-        NSString *site = siteField.text;
-        
-        
-        
-        NSString *waves = wavesField.text;
-        
-        
-        NSString *curret= currentField.text;
-        
-        
-        
-        NSString *maxDepth = maxDepField.text;
-        
-        
-        NSString *gasType = gasField.text;
-        
-        
-        NSString *diveTime = divetimeField.text;
-        NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-        [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-        
-        
-        NSString *visibility = visiField.text;
-        
-        
-        NSString *temperature = temperField.text;
-        
-        
-        NSString *startPressure = staPreField.text;
-        //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-        //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-        //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-        
-        
-        NSString *endPressure = _endPreField.text;
-        //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-        //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-        
-        NSData *signData = [NSData dataWithData:UIImagePNGRepresentation(signaturePresent.image)];
-        
-        dateField.text = nil;
-        siteField.text = nil;
-        wavesField.text = nil;
-        currentField.text = nil;
-        maxDepField.text = nil;
-        gasField.text = nil;
-        divetimeField.text = nil;
-        visiField.text = nil;
-        temperField.text = nil;
-        staPreField.text = nil;
-        _endPreField.text = nil;
-        signaturePresent.image = nil;
-        delegate.signatureImage = nil;
-        
-        DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
-        
-        database.date = dateStr;
-        database.site = site;
-        database.waves = waves;
-        database.current = curret;
-        database.max_depth = maxDepth;
-        database.gas_type = gasType;
-        database.dive_time = _diveTime;
-        database.visibility = visibility;
-        database.temperature = temperature;
-        database.start_pressure = startPressure;
-        database.end_pressure = endPressure;
-        database.signature = signData;
-        
-        
-        NSError *error;
-        if (![managedObjectContext save:&error]) {
-            NSLog(@"error:%@", [error localizedFailureReason]);
-        }
-        
-        NSLog(@"sign");
-        
-        //[delegate.navi pushViewController:logRecordViewController animated:YES];
-        [delegate.navi pushViewController:gisViewController animated:YES];
     }else{
         
         NSString *dateStr = dateField.text;
@@ -374,7 +199,7 @@
         //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
         NSData *imgData = [NSData dataWithData:UIImagePNGRepresentation(selectedImagePresent.image)];
-        NSData *signData = [NSData dataWithData:UIImagePNGRepresentation(signaturePresent.image)];
+        //NSData *signData = [NSData dataWithData:UIImagePNGRepresentation(signaturePresent.image)];
         
         dateField.text = nil;
         siteField.text = nil;
@@ -389,8 +214,8 @@
         _endPreField.text = nil;
         selectedImagePresent.image = nil;
         delegate.selectedCellImage = nil;
-        signaturePresent.image = nil;
-        delegate.signatureImage = nil;
+        //signaturePresent.image = nil;
+        //delegate.signatureImage = nil;
         
         DIVELOG *database = (DIVELOG *)[NSEntityDescription insertNewObjectForEntityForName:@"DIVELOG" inManagedObjectContext:managedObjectContext ];
         
@@ -406,7 +231,7 @@
         database.start_pressure = startPressure;
         database.end_pressure = endPressure;
         database.others = imgData;
-        database.signature = signData;
+        //database.signature = signData;
         
         
         NSError *error;
@@ -475,11 +300,11 @@
     return 0;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger)pickerView:(UIPickerView *)_pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (pickerView.tag == 201) {
+    if (_pickerView.tag == 201) {
         return [gasArr count];
-    }else if (pickerView.tag == 202){
+    }else if (_pickerView.tag == 202){
         if (component == 0) {
             return [_firstRow count];
         }else if (component == 1){
@@ -487,7 +312,7 @@
         }else if (component == 2){
             return [thirdRow count];
         }
-    }else if (pickerView.tag == 203){
+    }else if (_pickerView.tag == 203){
         if (component == 0) {
             return [_firstRow count];
         }else if (component == 1){
@@ -495,7 +320,7 @@
         }else if (component == 2){
             return [thirdRow count];
         }
-    }else if (pickerView.tag == 204){
+    }else if (_pickerView.tag == 204){
         if (component == 0) {
             return [_firstRow count];
         }else if (component == 1){
@@ -508,7 +333,7 @@
             return [mAndf count];
         }
 
-    }else if (pickerView.tag == 205){
+    }else if (_pickerView.tag == 205){
         if (component == 0) {
             return [_firstRow count];
         }else if (component == 1){
@@ -520,7 +345,7 @@
         }else if (component == 4){
             return [_cAndf count];
         }
-    }else if (pickerView.tag == 206){
+    }else if (_pickerView.tag == 206){
         if (component == 0) {
             return [_firstRow count];
         }else if (component == 1){
@@ -531,121 +356,310 @@
             return [mAndf count];
         }
         
-    }else if (pickerView.tag == 207){
+    }else if (_pickerView.tag == 207){
         return [wavesArr count];
-    }else if (pickerView.tag == 208){
+    }else if (_pickerView.tag == 208){
         return [currentArr count];
     }
 
     return 0;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (UIView *)pickerView:(UIPickerView *)bPickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    if (pickerView.tag == 201) {
-        return [gasArr objectAtIndex:row];
-    }else if (pickerView.tag == 202){
+    if (bPickerView.tag == 207) {
+        UILabel *waveLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+        waveLabel.text = [wavesArr objectAtIndex:row];
+        waveLabel.adjustsFontSizeToFitWidth = YES;
+        waveLabel.textAlignment = NSTextAlignmentCenter;
+        waveLabel.font = [UIFont systemFontOfSize:20];
+        return waveLabel;
+    }else if (bPickerView.tag == 208){
+        UILabel *current_Label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+        current_Label.text = [currentArr objectAtIndex:row];
+        current_Label.adjustsFontSizeToFitWidth = YES;
+        current_Label.textAlignment = NSTextAlignmentCenter;
+        current_Label.font = [UIFont systemFontOfSize:20];
+        return current_Label;
+    }else if (bPickerView.tag == 201){
+        UILabel *gas_Label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+        gas_Label.text = [gasArr objectAtIndex:row];
+        gas_Label.adjustsFontSizeToFitWidth = YES;
+        gas_Label.textAlignment = NSTextAlignmentCenter;
+        gas_Label.font = [UIFont systemFontOfSize:20.0];
+        return gas_Label;
+    }else if (bPickerView.tag == 202){
         if (component == 0) {
-            return [_firstRow objectAtIndex:row];
-        }else if (component == 1){
-            return [secondRow objectAtIndex:row];
-        }else if (component == 2){
-            return [thirdRow objectAtIndex:row];
-        }
-    }else if (pickerView.tag == 203){
-        if (component == 0) {
-            return [_firstRow objectAtIndex:row];
-        }else if (component == 1){
-            return [secondRow objectAtIndex:row];
-        }else if (component == 2){
-            return [thirdRow objectAtIndex:row];
-        }
-    }else if (pickerView.tag == 204){
-        if (component == 0) {
-            return [_firstRow objectAtIndex:row];
-        }else if (component == 1){
-            return [secondRow objectAtIndex:row];
-        }else if (component == 2){
-            return [thirdRow objectAtIndex:row];
-        }else if (component == 3){
-            return [_forthRow objectAtIndex:row];
-        }else if (component == 4){
-            return [mAndf objectAtIndex:row];
-        }
-    }else if (pickerView.tag == 205){
-        if (component == 0) {
-            return [_firstRow objectAtIndex:row];
-        }else if (component == 1){
-            return [secondRow objectAtIndex:row];
-        }else if (component == 2){
-            return [thirdRow objectAtIndex:row];
-        }else if (component == 3){
-            return [_forthRow objectAtIndex:row];
-        }else if (component == 4){
-            return [_cAndf objectAtIndex:row];
-        }
-    }else if (pickerView.tag == 206){
-        if (component == 0) {
-            return [_firstRow objectAtIndex:row];
-        }else if (component == 1){
-            return [secondRow objectAtIndex:row];
-        }else if (component == 2){
-            return [thirdRow objectAtIndex:row];
-        }else if (component == 3){
-            return [mAndf objectAtIndex:row];
-        }
-    }else if (pickerView.tag == 207){
-        return [wavesArr objectAtIndex:row];
-    }else if (pickerView.tag == 208){
-        return [currentArr objectAtIndex:row];
-    }
+            UILabel *first_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            first_row.text = [_firstRow objectAtIndex:row];
+            first_row.adjustsFontSizeToFitWidth = YES;
+            first_row.textAlignment = NSTextAlignmentCenter;
+            first_row.font = [UIFont systemFontOfSize:20.0];
+            return first_row;
 
-    
-    return nil;
+        }else if (component == 1){
+            UILabel *second_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            second_row.text = [secondRow objectAtIndex:row];
+            second_row.adjustsFontSizeToFitWidth = YES;
+            second_row.textAlignment = NSTextAlignmentCenter;
+            second_row.font = [UIFont systemFontOfSize:20.0];
+            return second_row;
+        }else if (component == 2){
+            UILabel *third_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            third_row.text = [thirdRow objectAtIndex:row];
+            third_row.adjustsFontSizeToFitWidth = YES;
+            third_row.textAlignment = NSTextAlignmentCenter;
+            third_row.font = [UIFont systemFontOfSize:20.0];
+            return third_row;
+        }
+        
+    }else if (bPickerView.tag == 203){
+        if (component == 0) {
+            UILabel *first_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            first_row.text = [_firstRow objectAtIndex:row];
+            first_row.adjustsFontSizeToFitWidth = YES;
+            first_row.textAlignment = NSTextAlignmentCenter;
+            first_row.font = [UIFont systemFontOfSize:20.0];
+            return first_row;
+            
+        }else if (component == 1){
+            UILabel *second_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            second_row.text = [secondRow objectAtIndex:row];
+            second_row.adjustsFontSizeToFitWidth = YES;
+            second_row.textAlignment = NSTextAlignmentCenter;
+            second_row.font = [UIFont systemFontOfSize:20.0];
+            return second_row;
+        }else if (component == 2){
+            UILabel *third_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            third_row.text = [thirdRow objectAtIndex:row];
+            third_row.adjustsFontSizeToFitWidth = YES;
+            third_row.textAlignment = NSTextAlignmentCenter;
+            third_row.font = [UIFont systemFontOfSize:20.0];
+            return third_row;
+        }
+    }else if (bPickerView.tag == 204){
+        if (component == 0) {
+            UILabel *first_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            first_row.text = [_firstRow objectAtIndex:row];
+            first_row.adjustsFontSizeToFitWidth = YES;
+            first_row.textAlignment = NSTextAlignmentCenter;
+            first_row.font = [UIFont systemFontOfSize:20.0];
+            return first_row;
+            
+        }else if (component == 1){
+            UILabel *second_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            second_row.text = [secondRow objectAtIndex:row];
+            second_row.adjustsFontSizeToFitWidth = YES;
+            second_row.textAlignment = NSTextAlignmentCenter;
+            second_row.font = [UIFont systemFontOfSize:20.0];
+            return second_row;
+        }else if (component == 2){
+            UILabel *third_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            third_row.text = [thirdRow objectAtIndex:row];
+            third_row.adjustsFontSizeToFitWidth = YES;
+            third_row.textAlignment = NSTextAlignmentCenter;
+            third_row.font = [UIFont systemFontOfSize:20.0];
+            return third_row;
+        }else if (component == 3){
+            UILabel *forth_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            forth_row.text = [_forthRow objectAtIndex:row];
+            forth_row.adjustsFontSizeToFitWidth = YES;
+            forth_row.textAlignment = NSTextAlignmentCenter;
+            forth_row.font = [UIFont systemFontOfSize:20.0];
+            return forth_row;
+        }else if (component == 4){
+            UILabel *parameter = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            parameter.text = [mAndf objectAtIndex:row];
+            parameter.adjustsFontSizeToFitWidth = YES;
+            parameter.textAlignment = NSTextAlignmentCenter;
+            parameter.font = [UIFont systemFontOfSize:20.0];
+            return parameter;
+        }
+    }else if (bPickerView.tag == 205){
+        if (component == 0) {
+            UILabel *first_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            first_row.text = [_firstRow objectAtIndex:row];
+            first_row.adjustsFontSizeToFitWidth = YES;
+            first_row.textAlignment = NSTextAlignmentCenter;
+            first_row.font = [UIFont systemFontOfSize:20.0];
+            return first_row;
+            
+        }else if (component == 1){
+            UILabel *second_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            second_row.text = [secondRow objectAtIndex:row];
+            second_row.adjustsFontSizeToFitWidth = YES;
+            second_row.textAlignment = NSTextAlignmentCenter;
+            second_row.font = [UIFont systemFontOfSize:20.0];
+            return second_row;
+        }else if (component == 2){
+            UILabel *third_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            third_row.text = [thirdRow objectAtIndex:row];
+            third_row.adjustsFontSizeToFitWidth = YES;
+            third_row.textAlignment = NSTextAlignmentCenter;
+            third_row.font = [UIFont systemFontOfSize:20.0];
+            return third_row;
+        }else if (component == 3){
+            UILabel *forth_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            forth_row.text = [_forthRow objectAtIndex:row];
+            forth_row.adjustsFontSizeToFitWidth = YES;
+            forth_row.textAlignment = NSTextAlignmentCenter;
+            forth_row.font = [UIFont systemFontOfSize:20.0];
+            return forth_row;
+        }else if (component == 4){
+            UILabel *temperture = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+            temperture.text = [_cAndf objectAtIndex:row];
+            temperture.adjustsFontSizeToFitWidth = YES;
+            temperture.textAlignment = NSTextAlignmentCenter;
+            temperture.font = [UIFont systemFontOfSize:20.0];
+            return temperture;
+        }
+        }else if (bPickerView.tag == 206){
+            if (component == 0) {
+                UILabel *first_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+                first_row.text = [_firstRow objectAtIndex:row];
+                first_row.adjustsFontSizeToFitWidth = YES;
+                first_row.textAlignment = NSTextAlignmentCenter;
+                first_row.font = [UIFont systemFontOfSize:20.0];
+                return first_row;
+                
+            }else if (component == 1){
+                UILabel *second_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+                second_row.text = [secondRow objectAtIndex:row];
+                second_row.adjustsFontSizeToFitWidth = YES;
+                second_row.textAlignment = NSTextAlignmentCenter;
+                second_row.font = [UIFont systemFontOfSize:20.0];
+                return second_row;
+            }else if (component == 2){
+                UILabel *third_row = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+                third_row.text = [thirdRow objectAtIndex:row];
+                third_row.adjustsFontSizeToFitWidth = YES;
+                third_row.textAlignment = NSTextAlignmentCenter;
+                third_row.font = [UIFont systemFontOfSize:20.0];
+                return third_row;
+            }else if (component == 3){
+                UILabel *parameter = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [bPickerView rowSizeForComponent:component].width, [bPickerView rowSizeForComponent:component].height)];
+                parameter.text = [mAndf objectAtIndex:row];
+                parameter.adjustsFontSizeToFitWidth = YES;
+                parameter.textAlignment = NSTextAlignmentCenter;
+                parameter.font = [UIFont systemFontOfSize:20.0];
+                return parameter;
+            }
+
+        }
+    return NULL;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+/*
+ viewForRow and titleForRow, these two methods theoratically cannot be called at the same class
+ */
+
+//- (NSString *)pickerView:(UIPickerView *)aPickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    if (aPickerView.tag == 201) {
+//        return [gasArr objectAtIndex:row];
+//        
+//    }else if (aPickerView.tag == 202){
+//        if (component == 0) {
+//            return [_firstRow objectAtIndex:row];
+//        }else if (component == 1){
+//            return [secondRow objectAtIndex:row];
+//        }else if (component == 2){
+//            return [thirdRow objectAtIndex:row];
+//        }
+//    }else if (aPickerView.tag == 203){
+//        if (component == 0) {
+//            return [_firstRow objectAtIndex:row];
+//        }else if (component == 1){
+//            return [secondRow objectAtIndex:row];
+//        }else if (component == 2){
+//            return [thirdRow objectAtIndex:row];
+//        }
+//    }else if (aPickerView.tag == 204){
+//        if (component == 0) {
+//            return [_firstRow objectAtIndex:row];
+//        }else if (component == 1){
+//            return [secondRow objectAtIndex:row];
+//        }else if (component == 2){
+//            return [thirdRow objectAtIndex:row];
+//        }else if (component == 3){
+//            return [_forthRow objectAtIndex:row];
+//        }else if (component == 4){
+//            return [mAndf objectAtIndex:row];
+//        }
+//    }else if (aPickerView.tag == 205){
+//        if (component == 0) {
+//            return [_firstRow objectAtIndex:row];
+//        }else if (component == 1){
+//            return [secondRow objectAtIndex:row];
+//        }else if (component == 2){
+//            return [thirdRow objectAtIndex:row];
+//        }else if (component == 3){
+//            return [_forthRow objectAtIndex:row];
+//        }else if (component == 4){
+//            return [_cAndf objectAtIndex:row];
+//        }
+//    }else if (aPickerView.tag == 206){
+//        if (component == 0) {
+//            return [_firstRow objectAtIndex:row];
+//        }else if (component == 1){
+//            return [secondRow objectAtIndex:row];
+//        }else if (component == 2){
+//            return [thirdRow objectAtIndex:row];
+//        }else if (component == 3){
+//            return [mAndf objectAtIndex:row];
+//        }
+//    }else if (aPickerView.tag == 207){
+//        return [wavesArr objectAtIndex:row];
+//    }else if (aPickerView.tag == 208){
+//        return [currentArr objectAtIndex:row];
+//    }
+//
+//    NSLog(@"%i, %i",row,component);
+//    return nil;
+//}
+
+- (void)pickerView:(UIPickerView *)aPickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (pickerView.tag == 201) {
-        NSInteger row = [pickerView selectedRowInComponent:0];
+    if (aPickerView.tag == 201) {
+        NSInteger row = [aPickerView selectedRowInComponent:0];
         selectedRow = [gasArr objectAtIndex:row];
         gasField.text = selectedRow;
-    }else if (pickerView.tag == 202){
-        NSInteger row1 = [pickerView selectedRowInComponent:0];
-        NSInteger row2 = [pickerView selectedRowInComponent:1];
-        NSInteger row3 = [pickerView selectedRowInComponent:2];
+    }else if (aPickerView.tag == 202){
+        NSInteger row1 = [aPickerView selectedRowInComponent:0];
+        NSInteger row2 = [aPickerView selectedRowInComponent:1];
+        NSInteger row3 = [aPickerView selectedRowInComponent:2];
         staPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
-    }else if (pickerView.tag == 203){
-        NSInteger row1 = [pickerView selectedRowInComponent:0];
-        NSInteger row2 = [pickerView selectedRowInComponent:1];
-        NSInteger row3 = [pickerView selectedRowInComponent:2];
+    }else if (aPickerView.tag == 203){
+        NSInteger row1 = [aPickerView selectedRowInComponent:0];
+        NSInteger row2 = [aPickerView selectedRowInComponent:1];
+        NSInteger row3 = [aPickerView selectedRowInComponent:2];
         _endPreField.text = [NSString stringWithFormat:@"%@ %@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3]];
-    }else if (pickerView.tag == 204){
-        NSInteger row1 = [pickerView selectedRowInComponent:0];
-        NSInteger row2 = [pickerView selectedRowInComponent:1];
-        NSInteger row3 = [pickerView selectedRowInComponent:2];
-        NSInteger row4 = [pickerView selectedRowInComponent:3];
-        NSInteger row5 = [pickerView selectedRowInComponent:4];
+    }else if (aPickerView.tag == 204){
+        NSInteger row1 = [aPickerView selectedRowInComponent:0];
+        NSInteger row2 = [aPickerView selectedRowInComponent:1];
+        NSInteger row3 = [aPickerView selectedRowInComponent:2];
+        NSInteger row4 = [aPickerView selectedRowInComponent:3];
+        NSInteger row5 = [aPickerView selectedRowInComponent:4];
         maxDepField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[mAndf objectAtIndex:row5]];
-    }else if (pickerView.tag == 205){
-        NSInteger row1 = [pickerView selectedRowInComponent:0];
-        NSInteger row2 = [pickerView selectedRowInComponent:1];
-        NSInteger row3 = [pickerView selectedRowInComponent:2];
-        NSInteger row4 = [pickerView selectedRowInComponent:3];
-        NSInteger row5 = [pickerView selectedRowInComponent:4];
+    }else if (aPickerView.tag == 205){
+        NSInteger row1 = [aPickerView selectedRowInComponent:0];
+        NSInteger row2 = [aPickerView selectedRowInComponent:1];
+        NSInteger row3 = [aPickerView selectedRowInComponent:2];
+        NSInteger row4 = [aPickerView selectedRowInComponent:3];
+        NSInteger row5 = [aPickerView selectedRowInComponent:4];
         temperField.text = [NSString stringWithFormat:@"%@%@%@.%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[_forthRow objectAtIndex:row4],[_cAndf objectAtIndex:row5]];
-    }else if (pickerView.tag == 206){
-        NSInteger row1 = [pickerView selectedRowInComponent:0];
-        NSInteger row2 = [pickerView selectedRowInComponent:1];
-        NSInteger row3 = [pickerView selectedRowInComponent:2];
-        NSInteger row4 = [pickerView selectedRowInComponent:3];
+    }else if (aPickerView.tag == 206){
+        NSInteger row1 = [aPickerView selectedRowInComponent:0];
+        NSInteger row2 = [aPickerView selectedRowInComponent:1];
+        NSInteger row3 = [aPickerView selectedRowInComponent:2];
+        NSInteger row4 = [aPickerView selectedRowInComponent:3];
         visiField.text = [NSString stringWithFormat:@"%@%@%@ %@",[_firstRow objectAtIndex:row1],[secondRow objectAtIndex:row2],[thirdRow objectAtIndex:row3],[mAndf objectAtIndex:row4]];
-    }else if (pickerView.tag == 207){
-        NSInteger row = [pickerView selectedRowInComponent:0];
+    }else if (aPickerView.tag == 207){
+        NSInteger row = [aPickerView selectedRowInComponent:0];
         selectedRow = [wavesArr objectAtIndex:row];
         wavesField.text = selectedRow;
-    }else if (pickerView.tag == 208){
-        NSInteger row = [pickerView selectedRowInComponent:0];
+    }else if (aPickerView.tag == 208){
+        NSInteger row = [aPickerView selectedRowInComponent:0];
         selectedRow = [currentArr objectAtIndex:row];
         currentField.text = selectedRow;
     }
@@ -880,10 +894,12 @@
 -(void)textAndLabel
 {
     dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
+    dateLabel.backgroundColor = [UIColor clearColor];
     [dateLabel setText:@"日期"];
     [scrollView addSubview:dateLabel];
     
     dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 85, 97, 30)];
+    dateField.backgroundColor = [UIColor clearColor];
     [dateField setTag:101];
     dateField.delegate = self;
     dateField.placeholder = @"YYYY-mm-dd";
@@ -892,10 +908,12 @@
     [scrollView addSubview:dateField];
     
     siteLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 154, 80, 21)];
+    siteLabel.backgroundColor = [UIColor clearColor];
     [siteLabel setText:@"潛點"];
     [scrollView addSubview:siteLabel];
     
     siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 151, 97, 30)];
+    siteField.backgroundColor = [UIColor clearColor];
     [siteField setTag:102];
     siteField.delegate = self;
     siteField.placeholder = @"Site Name";
@@ -904,10 +922,12 @@
     [scrollView addSubview:siteField];
     
     wavesLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
+    wavesLabel.backgroundColor = [UIColor clearColor];
     [wavesLabel setText:@"浪況"];
     [scrollView addSubview:wavesLabel];
     
     wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
+    wavesField.backgroundColor = [UIColor clearColor];
     [wavesField setTag:103];
     wavesField.delegate = self;
     //wavesField.placeholder = @"25.061033";
@@ -915,10 +935,12 @@
     [scrollView addSubview:wavesField];
     
     currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
+    currentLabel.backgroundColor = [UIColor clearColor];
     [currentLabel setText:@"水流"];
     [scrollView addSubview:currentLabel];
     
     currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
+    currentField.backgroundColor = [UIColor clearColor];
     [currentField setTag:104];
     currentField.delegate = self;
     //currentField.placeholder = @"121.646056";
@@ -926,22 +948,25 @@
     [scrollView addSubview:currentField];
     
     gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
+    gasLabel.backgroundColor = [UIColor clearColor];
     [gasLabel setText:@"氣源"];
     [scrollView addSubview:gasLabel];
     
     gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 349, 97, 30)];
     [gasField setTag:105];
     gasField.delegate = self;
-    gasField.placeholder = @"Type of Gas";
+    //gasField.placeholder = @"氣源";
     gasField.borderStyle = UITextBorderStyleRoundedRect;
     gasField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:gasField];
     
     staPrelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 428, 200, 21)];
+    staPrelabel.backgroundColor = [UIColor clearColor];
     [staPrelabel setText:@"Start Pressure"];
     [scrollView addSubview:staPrelabel];
     
     staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 425, 97, 30)];
+    staPreField.backgroundColor = [UIColor clearColor];
     [staPreField setTag:106];
     staPreField.delegate = self;
     staPreField.placeholder = @"200 bar";
@@ -951,10 +976,12 @@
     [scrollView addSubview:staPreField];
     
     _endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 494, 200, 21)];
+    _endPreLabel.backgroundColor = [UIColor clearColor];
     [_endPreLabel setText:@"End Pressure"];
     [scrollView addSubview:_endPreLabel];
     
     _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
+    _endPreField.backgroundColor = [UIColor clearColor];
     [_endPreField setTag:107];
     _endPreField.delegate = self;
     _endPreField.placeholder = @"60 bar";
@@ -964,10 +991,12 @@
     [scrollView addSubview:_endPreField];
     
     maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
+    maxDepLabel.backgroundColor = [UIColor clearColor];
     [maxDepLabel setText:@"最大深度"];
     [scrollView addSubview:maxDepLabel];
     
     maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 557, 97, 30)];
+    maxDepField.backgroundColor = [UIColor clearColor];
     [maxDepField setTag:108];
     maxDepField.delegate = self;
     maxDepField.placeholder = @"40 M";
@@ -977,10 +1006,12 @@
     [scrollView addSubview:maxDepField];
     
     divetimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 626, 100, 21)];
+    divetimeLabel.backgroundColor = [UIColor clearColor];
     [divetimeLabel setText:@"潛水時間"];
     [scrollView addSubview:divetimeLabel];
     
     divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 623, 97, 30)];
+    divetimeField.backgroundColor = [UIColor clearColor];
     [divetimeField setTag:111];
     divetimeField.delegate = self;
     divetimeField.placeholder = @"in minutes";
@@ -990,10 +1021,12 @@
     [scrollView addSubview:divetimeField];
     
     temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 692, 100, 21)];
+    temperLabel.backgroundColor = [UIColor clearColor];
     [temperLabel setText:@"水溫"];
     [scrollView addSubview:temperLabel];
     
     temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 689, 97, 30)];
+    temperField.backgroundColor = [UIColor clearColor];
     [temperField setTag:109];
     temperField.delegate = self;
     temperField.placeholder = @"";
@@ -1002,10 +1035,12 @@
     [scrollView addSubview:temperField];
     
     visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 758, 100, 21)];
+    visiLabel.backgroundColor = [UIColor clearColor];
     [visiLabel setText:@"能見度"];
     [scrollView addSubview:visiLabel];
     
     visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 755, 97, 30)];
+    visiField.backgroundColor = [UIColor clearColor];
     [visiField setTag:110];
     visiField.delegate = self;
     visiField.placeholder = @"15M";
@@ -1013,7 +1048,7 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
-
+    
 
 }
 
@@ -1034,29 +1069,29 @@
     [delegate.navi pushViewController:photoViewController animated:YES];
 }
 
--(void)partnerSingnature:(id)sender
-{
-    if (signaturePresent.image != nil) {
-        [delegate.navi pushViewController:signatureViewController animated:YES];
-        signaturePresent.image = nil;
-    }else{
-        
-        [delegate.navi pushViewController:signatureViewController animated:YES];
-    }
-    
-    
-}
+//-(void)partnerSingnature:(id)sender
+//{
+//    if (signaturePresent.image != nil) {
+//        [delegate.navi pushViewController:signatureViewController animated:YES];
+//        signaturePresent.image = nil;
+//    }else{
+//        
+//        [delegate.navi pushViewController:signatureViewController animated:YES];
+//    }
+//    
+//    
+//}
 
 -(void)loadView
 {
     [super loadView];
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1500);
+    scrollView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"scroll_background.png"]];
     [self.view addSubview:scrollView];
     
-    [self textAndLabel];
     
-    gasArr = [NSArray arrayWithObjects:@"Normal Air",@"Nitrox",@"Closed Circuit",@"Surface Supplied", nil];
+    gasArr = [NSArray arrayWithObjects:@"一般空氣",@"高氧",@"循環水肺",@"岸上供氣", nil];
     _firstRow = [NSArray arrayWithObjects:@" ",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     secondRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
     thirdRow = [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
@@ -1073,30 +1108,37 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     UIButton *load = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [load setTitle:@"Load" forState:UIControlStateNormal];
+    [load setTitle:@"相片" forState:UIControlStateNormal];
     load.frame = CGRectMake(scrollView.center.x-25, 810, 50, 40);
     [load addTarget:self action:@selector(loadPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:load];
     
-    UIButton *singnature = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [singnature setTitle:@"潛伴簽名" forState:UIControlStateNormal];
-    singnature.frame = CGRectMake(scrollView.center.x-50, selectedImagePresent.frame.origin.y+1070, 100, 50);
-    [singnature addTarget:self action:@selector(partnerSingnature:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:singnature];
+//    UIButton *singnature = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [singnature setTitle:@"潛伴簽名" forState:UIControlStateNormal];
+//    singnature.frame = CGRectMake(scrollView.center.x-50, selectedImagePresent.frame.origin.y+1070, 100, 50);
+//    [singnature addTarget:self action:@selector(partnerSingnature:) forControlEvents:UIControlEventTouchUpInside];
+//    [scrollView addSubview:singnature];
     
     delegate = [[UIApplication sharedApplication] delegate];
     managedObjectContext = delegate.context;
     
     logRecordViewController = [[LogRecordViewController alloc] init];
+    
+    gisViewController = [[GISViewController alloc] init];
+    
+    photoViewController = [[PhotoViewController alloc] init];
+    
 //    logOptionsViewController = [[LogOptionsViewController alloc] init];
 //    logOptionsViewController.delegate = self;
-    gisViewController = [[GISViewController alloc] init];
-    photoViewController = [[PhotoViewController alloc] init];
-    signatureViewController = [[SignatureViewController alloc] init];
+    
+    //signatureViewController = [[SignatureViewController alloc] init];
 //    UIBarButtonItem *toLogRecord = [[UIBarButtonItem alloc] initWithTitle:@"Log" style:UIBarButtonItemStyleBordered target:self action:@selector(toLogRecord:)];
 //    NSArray *barButtonArr = [NSArray arrayWithObjects:save,toLogRecord, nil];
     //self.navigationItem.rightBarButtonItems = barButtonArr;
     //self.navigationItem.hidesBackButton = YES;
+    
+    [self textAndLabel];
+
 }
 
 
@@ -1127,10 +1169,27 @@
     [super viewWillAppear:animated];
     
     [self presentSelectImage];
-    [self presentSignature];
+    //[self presentSignature];
     
 
 
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    dateField.text = nil;
+    siteField.text = nil;
+    wavesField.text = nil;
+    currentField.text = nil;
+    maxDepField.text = nil;
+    gasField.text = nil;
+    divetimeField.text = nil;
+    visiField.text = nil;
+    temperField.text = nil;
+    staPreField.text = nil;
+    _endPreField.text = nil;
+    selectedImagePresent.image = nil;
+    delegate.selectedCellImage = nil;
 }
 
 -(void)presentSelectImage
@@ -1141,15 +1200,15 @@
     [scrollView addSubview:selectedImagePresent];
 }
 
--(void)presentSignature
-{
-    signaturePresent = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.center.x-200, 1080, 400, 300)];
-    if (delegate.signatureImage == nil) {
-        NSLog(@"no image");
-    }
-    signaturePresent.image = delegate.signatureImage;
-    [scrollView addSubview:signaturePresent];
-}
+//-(void)presentSignature
+//{
+//    signaturePresent = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.center.x-200, 1080, 400, 300)];
+//    if (delegate.signatureImage == nil) {
+//        NSLog(@"no image");
+//    }
+//    signaturePresent.image = delegate.signatureImage;
+//    [scrollView addSubview:signaturePresent];
+//}
 
 -(BOOL)shouldAutorotate
 {

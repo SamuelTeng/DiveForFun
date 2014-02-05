@@ -23,5 +23,5 @@
 @dynamic start_pressure;
 @dynamic end_pressure;
 @dynamic others;
-@dynamic signature;
+
 @end

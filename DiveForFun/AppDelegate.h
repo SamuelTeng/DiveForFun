@@ -11,6 +11,8 @@
 //#import "RouteViewController.h"
 #import "GISViewController.h"
 #import "StarterViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -21,6 +23,8 @@
 //@property (nonatomic,strong) RouteViewController *routeViewController;
 @property (nonatomic,strong) GISViewController *gisViewController;
 @property (nonatomic,strong) StarterViewController *starterViewController;
+
+
 
 
 @property (readonly , strong , nonatomic) NSManagedObjectModel *managedModel;
@@ -51,6 +55,8 @@
 @property (nonatomic,strong) NSData *signature;
 
 @property (nonatomic,strong) UIImage *selectedCellImage;
-@property (nonatomic,strong) UIImage *signatureImage;
+//@property (nonatomic,strong) UIImage *signatureImage;
+
+
 
 @end

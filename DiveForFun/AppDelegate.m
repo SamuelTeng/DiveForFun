@@ -9,11 +9,14 @@
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 
+#import "LoginViewController.h"
+
+
 @implementation AppDelegate
 
 //@synthesize ,latGIS,lonGIS,courseGIS,altGIS,timeGIS,logLat,logLon,logDate,logSite,gisViewController;
 @synthesize date,site,airType,maxiumDepth,temperature,timeOfDiving,pressureOfEnd,pressureOfStart,visibility,imageData,signature,navi,managedModel,persistentstoreCoordinator,context,gisViewController,starterViewController;
-@synthesize selectedCellImage,signatureImage;
+@synthesize selectedCellImage;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,16 +35,37 @@
    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [FBProfilePictureView class];
+    LoginViewController *logingViewCOntroller = [[LoginViewController alloc] init];
+    self.starterViewController = [[StarterViewController alloc] init];
+
     //self.mainViewController = [[MainViewController alloc] init];
     //self.routeViewController = [[RouteViewController alloc] init];
     //self.gisViewController = [[GISViewController alloc] init];
-    self.starterViewController = [[StarterViewController alloc] init];
-    self.navi = [[UINavigationController alloc] initWithRootViewController:starterViewController];
+    
+    
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        NSLog(@"Found A Cached Session");
+        self.navi = [[UINavigationController alloc] initWithRootViewController:starterViewController];
+    }else{
+        NSLog(@"No Cached Be Made");
+       self.navi = [[UINavigationController alloc] initWithRootViewController:logingViewCOntroller];
+    }
+    
     self.window.rootViewController = navi;
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    return wasHandled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
